@@ -1,7 +1,7 @@
 {
-  "name": "node-skeleton",
-  "version": "1.0.0",
-  "description": "",
+  "name": "resource-wall",
+  "version": "0.1.0",
+  "description": "Single-page app to collect learning resources",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -9,7 +9,16 @@
     "local": "./node_modules/.bin/nodemon -L --ignore public/",
     "db:reset": "node bin/resetdb.js"
   },
-  "author": "Lighthouse Labs",
+  "contributors": [
+    {
+      "name": "Lee Pavelich",
+      "url": "https://github.com/leepavelich/"
+    },
+    {
+      "name": "Albert Ho",
+      "url": "https://github.com/albho/"
+    }
+  ],
   "license": "ISC",
   "dependencies": {
     "chalk": "^2.4.2",
