@@ -19,3 +19,15 @@ const pool = new Pool(dbParams);
     .catch((err) => err.message);
 }
 exports.getUserWithEmail = getUserWithEmail;
+
+/**
+ * Get all resources for all users.
+ * @return {Promise<[{}]>} A promise to the reservations.
+ */
+ const getAllResources = () => {
+  return pool
+    .query('SELECT * FROM resources')
+    .then((result) => result.rows)
+    .catch((err) => err.message);
+}
+exports.getAllResources = getAllResources;
