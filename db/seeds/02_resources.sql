@@ -17,6 +17,14 @@ VALUES (
     'https://lotr.fandom.com/wiki/One_Ring'
   ),
   (
+    2,
+    'Gollum',
+    'My other side',
+    'Blog',
+    'Biography',
+    'https://lotr.fandom.com/wiki/Gollum'
+  ),
+  (
     3,
     'Me IRL',
     'Read about the real Gandalf',
