@@ -12,22 +12,55 @@ const pool = new Pool(dbParams);
  * @param {String} email The email of the user.
  * @return {Promise<{}>} A promise to the user.
  */
- const getUserWithEmail = (email) => {
+const getUserWithEmail = (email) => {
   return pool
-    .query('SELECT * FROM users WHERE email = $1', [email])
+    .query("SELECT * FROM users WHERE email = $1;", [email])
     .then((result) => result.rows[0])
     .catch((err) => err.message);
-}
-exports.getUserWithEmail = getUserWithEmail;
+};
 
 /**
  * Get all resources for all users.
  * @return {Promise<[{}]>} A promise to the reservations.
  */
- const getAllResources = () => {
+const getAllResources = () => {
   return pool
-    .query('SELECT * FROM resources')
+    .query("SELECT * FROM resources;")
     .then((result) => result.rows)
     .catch((err) => err.message);
-}
-exports.getAllResources = getAllResources;
+};
+
+const getLikesByUser = (userId) => {
+  return pool
+    .query(
+      `SELECT * FROM resources
+        INNER JOIN likes ON resources.id = likes.resource_id
+        WHERE likes.user_id = $1;
+      `,
+      [userId]
+    )
+    .then((result) => result.rows)
+    .catch((err) => err.message);
+};
+
+// getOwnedByUser
+// getResourceComments
+// getResourceRatings (SQL return avg)
+
+// addResource
+// addComment
+// addLike
+// removeLike
+// addRating
+
+// (optional for now)
+// addUser
+// updateRating
+// removeRating
+// removeComment
+
+module.exports = {
+  getUserWithEmail,
+  getAllResources,
+  getLikesByUser,
+};
