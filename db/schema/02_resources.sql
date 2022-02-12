@@ -2,7 +2,6 @@
 
 DROP TABLE IF EXISTS resources CASCADE;
 
-
 CREATE TABLE resources (
   id SERIAL PRIMARY KEY NOT NULL,
   owner_id INTEGER REFERENCES users(id),
