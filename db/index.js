@@ -111,12 +111,29 @@ const addComment = (newComment) => {
       `,
         [user_id, resource_id, comment]
       )
-      // returns newly created resource - this may be unnecessary
+      // returns newly created comment - this may be unnecessary
       .then((result) => result.rows[0])
       .catch((err) => err.message)
   );
 };
-// addLike
+
+const addLike = (newLike) => {
+  const { user_id, resource_id } = newLike;
+
+  return (
+    pool
+      .query(
+        `INSERT INTO likes (user_id, resource_id)
+        VALUES ($1, $2)
+        RETURNING *;
+      `,
+        [user_id, resource_id]
+      )
+      // returns newly created like - this may be unnecessary
+      .then((result) => result.rows[0])
+      .catch((err) => err.message)
+  );
+};
 // removeLike
 // addRating
 
@@ -135,4 +152,5 @@ module.exports = {
   getResourceRatings,
   addResource,
   addComment,
+  addLike,
 };

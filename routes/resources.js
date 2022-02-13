@@ -23,10 +23,21 @@ module.exports = (database) => {
 
   router.post("/comments", (req, res) => {
     const newComment = req.body;
-    console.log(newComment);
 
     database
       .addComment(newComment)
+      .then((resources) => res.send({ resources }))
+      .catch((e) => {
+        console.error(e);
+        res.send(e);
+      });
+  });
+
+  router.post("/likes", (req, res) => {
+    const newLike = req.body;
+
+    database
+      .addLike(newLike)
       .then((resources) => res.send({ resources }))
       .catch((e) => {
         console.error(e);
