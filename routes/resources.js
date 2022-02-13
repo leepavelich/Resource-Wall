@@ -21,6 +21,19 @@ module.exports = (database) => {
       });
   });
 
+  router.post("/comments", (req, res) => {
+    const newComment = req.body;
+    console.log(newComment);
+
+    database
+      .addComment(newComment)
+      .then((resources) => res.send({ resources }))
+      .catch((e) => {
+        console.error(e);
+        res.send(e);
+      });
+  });
+
   router.get("/ratings/:id", (req, res) => {
     const { id } = req.params;
 

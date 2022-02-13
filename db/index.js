@@ -98,7 +98,24 @@ const addResource = (newResource) => {
       .catch((err) => err.message)
   );
 };
-// addComment
+
+const addComment = (newComment) => {
+  const { user_id, resource_id, comment } = newComment;
+
+  return (
+    pool
+      .query(
+        `INSERT INTO comments (user_id, resource_id, comment)
+        VALUES ($1, $2, $3)
+        RETURNING *;
+      `,
+        [user_id, resource_id, comment]
+      )
+      // returns newly created resource - this may be unnecessary
+      .then((result) => result.rows[0])
+      .catch((err) => err.message)
+  );
+};
 // addLike
 // removeLike
 // addRating
@@ -117,4 +134,5 @@ module.exports = {
   getResourceComments,
   getResourceRatings,
   addResource,
+  addComment,
 };
