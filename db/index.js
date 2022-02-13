@@ -54,7 +54,18 @@ const getOwnedByUser = (userId) => {
     .then((result) => result.rows)
     .catch((err) => err.message);
 };
-// getResourceComments
+
+const getResourceComments = (resourceId) => {
+  return pool
+    .query(
+      `SELECT * FROM comments
+        WHERE resource_id = $1;
+      `,
+      [resourceId]
+    )
+    .then((result) => result.rows)
+    .catch((err) => err.message);
+};
 // getResourceRatings (SQL return avg)
 
 // addResource
@@ -74,4 +85,5 @@ module.exports = {
   getAllResources,
   getLikesByUser,
   getOwnedByUser,
+  getResourceComments,
 };
