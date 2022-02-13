@@ -60,6 +60,23 @@ const getResourceRating = (resourceId) => {
 };
 
 // 3.
+const getLikes = (resourceId) => {
+  return (
+    pool
+      .query(
+        `SELECT username FROM users
+          INNER JOIN likes ON users.id = likes.user_id
+          WHERE likes.resource_id = $1;
+      `,
+        [resourceId]
+      )
+      // returns newly created like - this may be unnecessary
+      .then((result) => result.rows)
+      .catch((err) => err.message)
+  );
+};
+
+// 4.
 const addComment = (newComment) => {
   const { user_id, resource_id, comment } = newComment;
 
@@ -78,7 +95,7 @@ const addComment = (newComment) => {
   );
 };
 
-// 4.
+// 5.
 const addRating = (newRating) => {
   const { user_id, resource_id, rating } = newRating;
 
@@ -97,7 +114,7 @@ const addRating = (newRating) => {
   );
 };
 
-// 5.
+// 6.
 const addLike = (like) => {
   const { user_id, resource_id } = like;
 
@@ -116,7 +133,7 @@ const addLike = (like) => {
   );
 };
 
-// 6.
+// 7.
 const removeLike = (like) => {
   const { user_id, resource_id } = like;
 
@@ -135,7 +152,7 @@ const removeLike = (like) => {
   );
 };
 
-// 7.
+// 8.
 const getAllResources = () => {
   return pool
     .query("SELECT * FROM resources;")
@@ -143,7 +160,7 @@ const getAllResources = () => {
     .catch((err) => err.message);
 };
 
-// 8.
+// 9.
 const addResource = (newResource) => {
   const { owner_id, title, description, type, topic, url } = newResource;
 
@@ -169,12 +186,11 @@ const addResource = (newResource) => {
 // removeComment
 
 module.exports = {
-  getUserWithEmail,
   getAllResources,
   getLikedByUser,
-  getOwnedByUser,
   getResourceComments,
   getResourceRating,
+  getLikes,
   addResource,
   addComment,
   addLike,

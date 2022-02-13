@@ -22,7 +22,7 @@ module.exports = (database) => {
       });
   });
 
-  // get average rating of a resource
+  // 2. get average rating of a resource
   router.get("/:id/rating", (req, res) => {
     const { id } = req.params;
 
@@ -35,7 +35,20 @@ module.exports = (database) => {
       });
   });
 
-  // 3. add new comment
+  // 3. get usernames of users who liked a resource
+  router.get("/:id/likes", (req, res) => {
+    const { id } = req.params;
+
+    database
+      .getLikes(id)
+      .then((resources) => res.send({ resources }))
+      .catch((e) => {
+        console.error(e);
+        res.send(e);
+      });
+  });
+
+  // 4. add new comment
   router.post("/comments", (req, res) => {
     const newComment = req.body;
 
@@ -48,7 +61,7 @@ module.exports = (database) => {
       });
   });
 
-  // 4. add rating
+  // 5. add rating
   router.post("/rating", (req, res) => {
     const newRating = req.body;
 
@@ -61,8 +74,8 @@ module.exports = (database) => {
       });
   });
 
-  // 5. add like
-  router.post("/like", (req, res) => {
+  // 6. add like
+  router.post("/likes", (req, res) => {
     const like = req.body;
 
     database
@@ -74,7 +87,7 @@ module.exports = (database) => {
       });
   });
 
-  // 6. remove like
+  // 7. remove like
   router.post("/unlike", (req, res) => {
     const like = req.body;
 
@@ -87,7 +100,7 @@ module.exports = (database) => {
       });
   });
 
-  // 7. retrive all resources
+  // 8. retrive all resources
   router.get("/", (req, res) => {
     // const userId = req.session.userId;
     // if (!userId) {
@@ -103,7 +116,7 @@ module.exports = (database) => {
       });
   });
 
-  // 8. add new resource
+  // 9. add new resource
   router.post("/", (req, res) => {
     const newResource = req.body;
 
