@@ -2,33 +2,50 @@
 INSERT INTO resources (owner_id, title, description, type, topic, url)
 VALUES (
     1,
-    'Goodbye Ring',
-    'My proudest moment!',
+    'Build a House',
+    'Instructional video on building a home',
     'Video',
-    'Nature',
-    'https://www.youtube.com/watch?v=c24-0Amwyik&ab_channel=EgalmothOfGondolin01'
+    'Construction',
+    'https://www.youtube.com/watch?v=rzeCdTZ5ylc&ab_channel=Zaypixel'
   ),
   (
     2,
-    'The Ring',
-    'My preciousssssssss!',
-    'Blog',
-    'Jewelry',
+    'Buy a Ring',
+    'How to shop for jewelry',
+    'Wiki',
+    'Shopping',
     'https://lotr.fandom.com/wiki/One_Ring'
   ),
   (
-    2,
-    'Gollum',
-    'My other side',
+    1,
+    'Cooking Breakfast',
+    'Guide on cooking breakfast',
     'Blog',
-    'Biography',
-    'https://lotr.fandom.com/wiki/Gollum'
+    'Food',
+    'https://tasty.co/compilation/tasty-s-top-5-breakfast-recipes-to-make-any-time'
   ),
   (
     3,
-    'Me IRL',
-    'Read about the real Gandalf',
+    'Magic Books',
+    'Books to check out',
     'Blog',
-    'Writing',
-    'https://mckellen.com/blog/index.htm'
-  );
+    'Literature',
+    'https://www.thesprucecrafts.com/best-magic-books-for-beginners-2266533'
+  ),
+  (
+    2,
+    'Fishing',
+    'How to catch fish',
+    'Video',
+    'Educational',
+    'https://www.youtube.com/watch?v=-P0OVbWvw7I&ab_channel=TakeMeFishing'
+  ),
+  (
+    3,
+    'Good Quotes',
+    'Some of my best quotes',
+    'Blog',
+    'Literature',
+    'https://bookroo.com/quotes/gandalf'
+  ),
+;

@@ -1,6 +1,15 @@
 INSERT INTO comments (user_id, resource_id, comment)
-VALUES (1, 2, 'Ooo nice'),
-  (2, 1, 'NOOOOOOOOO'),
-  (1, 3, 'Are you a wizard or a writer?'),
-  (3, 1, 'Nice going, Frodo!'),
-  (3, 3, 'I am both!');
+VALUES (
+    1,
+    2,
+    'This is a nice ring. It looks like one I have.'
+  ),
+  (
+    2,
+    1,
+    'That looks cozy. Much nicer than where I live.'
+  ),
+  (1, 4, 'Meh'),
+  (3, 1, 'Looking good, Frodo!'),
+  (4, 6, 'Nice! These are some good quotes.'),
+  (3, 6, 'Thanks, Legolas!'),
