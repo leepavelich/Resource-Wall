@@ -11,9 +11,22 @@ const router = express.Router();
 module.exports = (database) => {
   router.get("/likes/:id", (req, res) => {
     const { id } = req.params;
+    console.log(id);
 
     database
       .getLikesByUser(id)
+      .then((resources) => res.send({ resources }))
+      .catch((e) => {
+        console.error(e);
+        res.send(e);
+      });
+  });
+
+  router.get("/owned/:id", (req, res) => {
+    const { id } = req.params;
+
+    database
+      .getOwnedByUser(id)
       .then((resources) => res.send({ resources }))
       .catch((e) => {
         console.error(e);

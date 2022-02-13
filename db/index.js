@@ -43,7 +43,17 @@ const getLikesByUser = (userId) => {
     .catch((err) => err.message);
 };
 
-// getOwnedByUser
+const getOwnedByUser = (userId) => {
+  return pool
+    .query(
+      `SELECT * FROM resources
+        WHERE owner_id = $1;
+      `,
+      [userId]
+    )
+    .then((result) => result.rows)
+    .catch((err) => err.message);
+};
 // getResourceComments
 // getResourceRatings (SQL return avg)
 
@@ -63,4 +73,5 @@ module.exports = {
   getUserWithEmail,
   getAllResources,
   getLikesByUser,
+  getOwnedByUser,
 };
