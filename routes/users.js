@@ -22,5 +22,8 @@ module.exports = (database) => {
       });
   });
 
+  // get info from a single user
+  // /:id
+
   return router;
 };
