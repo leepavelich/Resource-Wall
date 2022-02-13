@@ -12,4 +12,4 @@ VALUES (
   (1, 4, 'Meh'),
   (3, 1, 'Looking good, Frodo!'),
   (4, 6, 'Nice! These are some good quotes.'),
-  (3, 6, 'Thanks, Legolas!'),
+  (3, 6, 'Thanks, Legolas!');

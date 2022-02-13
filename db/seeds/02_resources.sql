@@ -47,5 +47,4 @@ VALUES (
     'Blog',
     'Literature',
     'https://bookroo.com/quotes/gandalf'
-  ),
-;
+  );
