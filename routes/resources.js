@@ -9,6 +9,7 @@ const express = require("express");
 const router = express.Router();
 
 module.exports = (database) => {
+  // 1. get all comments of a resource
   router.get("/:id/comments", (req, res) => {
     const { id } = req.params;
 
@@ -21,6 +22,20 @@ module.exports = (database) => {
       });
   });
 
+  // get average rating of a resource
+  router.get("/:id/rating", (req, res) => {
+    const { id } = req.params;
+
+    database
+      .getResourceRating(id)
+      .then((resources) => res.send({ resources }))
+      .catch((e) => {
+        console.error(e);
+        res.send(e);
+      });
+  });
+
+  // 3. add new comment
   router.post("/comments", (req, res) => {
     const newComment = req.body;
 
@@ -33,6 +48,20 @@ module.exports = (database) => {
       });
   });
 
+  // 4. add rating
+  router.post("/rating", (req, res) => {
+    const newRating = req.body;
+
+    database
+      .addRating(newRating)
+      .then((resources) => res.send({ resources }))
+      .catch((e) => {
+        console.error(e);
+        res.send(e);
+      });
+  });
+
+  // 5. add like
   router.post("/like", (req, res) => {
     const like = req.body;
 
@@ -45,6 +74,7 @@ module.exports = (database) => {
       });
   });
 
+  // 6. remove like
   router.post("/unlike", (req, res) => {
     const like = req.body;
 
@@ -57,42 +87,7 @@ module.exports = (database) => {
       });
   });
 
-  router.post("/ratings", (req, res) => {
-    const newRating = req.body;
-
-    database
-      .addRating(newRating)
-      .then((resources) => res.send({ resources }))
-      .catch((e) => {
-        console.error(e);
-        res.send(e);
-      });
-  });
-
-  router.get("/:id/ratings", (req, res) => {
-    const { id } = req.params;
-
-    database
-      .getResourceRatings(id)
-      .then((resources) => res.send({ resources }))
-      .catch((e) => {
-        console.error(e);
-        res.send(e);
-      });
-  });
-
-  router.post("/", (req, res) => {
-    const newResource = req.body;
-
-    database
-      .addResource(newResource)
-      .then((resources) => res.send({ resources }))
-      .catch((e) => {
-        console.error(e);
-        res.send(e);
-      });
-  });
-
+  // 7. retrive all resources
   router.get("/", (req, res) => {
     // const userId = req.session.userId;
     // if (!userId) {
@@ -107,5 +102,19 @@ module.exports = (database) => {
         res.send(e);
       });
   });
+
+  // 8. add new resource
+  router.post("/", (req, res) => {
+    const newResource = req.body;
+
+    database
+      .addResource(newResource)
+      .then((resources) => res.send({ resources }))
+      .catch((e) => {
+        console.error(e);
+        res.send(e);
+      });
+  });
+
   return router;
 };

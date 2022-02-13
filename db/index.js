@@ -5,31 +5,18 @@ const dbParams = require("../lib/db.js");
 const pool = new Pool(dbParams);
 // db.connect();
 
-/// Users
-
-/**
- * Get a single user from the database given their email.
- * @param {String} email The email of the user.
- * @return {Promise<{}>} A promise to the user.
- */
-const getUserWithEmail = (email) => {
-  return pool
-    .query("SELECT * FROM users WHERE email = $1;", [email])
-    .then((result) => result.rows[0])
-    .catch((err) => err.message);
-};
-
-/**
- * Get all resources for all users.
- * @return {Promise<[{}]>} A promise to the reservations.
- */
-const getAllResources = () => {
-  return pool
-    .query("SELECT * FROM resources;")
-    .then((result) => result.rows)
-    .catch((err) => err.message);
-};
-
+// /**
+//  * Get a single user from the database given their email.
+//  * @param {String} email The email of the user.
+//  * @return {Promise<{}>} A promise to the user.
+//  */
+// const getUserWithEmail = (email) => {
+//   return pool
+//     .query("SELECT * FROM users WHERE email = $1;", [email])
+//     .then((result) => result.rows[0])
+//     .catch((err) => err.message);
+// };
+/** USERS ROUTES **/
 const getLikedByUser = (userId) => {
   return pool
     .query(
@@ -43,18 +30,8 @@ const getLikedByUser = (userId) => {
     .catch((err) => err.message);
 };
 
-const getOwnedByUser = (userId) => {
-  return pool
-    .query(
-      `SELECT * FROM resources
-        WHERE owner_id = $1;
-      `,
-      [userId]
-    )
-    .then((result) => result.rows)
-    .catch((err) => err.message);
-};
-
+/** RESOURCES ROUTES */
+// 1.
 const getResourceComments = (resourceId) => {
   return pool
     .query(
@@ -67,7 +44,8 @@ const getResourceComments = (resourceId) => {
     .catch((err) => err.message);
 };
 
-const getResourceRatings = (resourceId) => {
+// 2.
+const getResourceRating = (resourceId) => {
   return pool
     .query(
       `SELECT ROUND(AVG(rating), 1) AS average_rating
@@ -81,24 +59,7 @@ const getResourceRatings = (resourceId) => {
     .catch((err) => err.message);
 };
 
-const addResource = (newResource) => {
-  const { owner_id, title, description, type, topic, url } = newResource;
-
-  return (
-    pool
-      .query(
-        `INSERT INTO resources (owner_id, title, description, type, topic, url)
-        VALUES ($1, $2, $3, $4, $5, $6)
-        RETURNING *;
-      `,
-        [owner_id, title, description, type, topic, url]
-      )
-      // returns newly created resource - this may be unnecessary
-      .then((result) => result.rows[0])
-      .catch((err) => err.message)
-  );
-};
-
+// 3.
 const addComment = (newComment) => {
   const { user_id, resource_id, comment } = newComment;
 
@@ -117,42 +78,7 @@ const addComment = (newComment) => {
   );
 };
 
-const addLike = (like) => {
-  const { user_id, resource_id } = like;
-
-  return (
-    pool
-      .query(
-        `INSERT INTO likes (user_id, resource_id)
-        VALUES ($1, $2)
-        RETURNING *;
-      `,
-        [user_id, resource_id]
-      )
-      // returns newly created like - this may be unnecessary
-      .then((result) => result.rows[0])
-      .catch((err) => err.message)
-  );
-};
-
-const removeLike = (like) => {
-  const { user_id, resource_id } = like;
-
-  return (
-    pool
-      .query(
-        `DELETE FROM likes
-          WHERE user_id = $1
-          AND resource_id = $2;
-      `,
-        [user_id, resource_id]
-      )
-      // returns empty object - this may be unnecessary
-      .then((result) => result.rows[0])
-      .catch((err) => err.message)
-  );
-};
-
+// 4.
 const addRating = (newRating) => {
   const { user_id, resource_id, rating } = newRating;
 
@@ -171,6 +97,71 @@ const addRating = (newRating) => {
   );
 };
 
+// 5.
+const addLike = (like) => {
+  const { user_id, resource_id } = like;
+
+  return (
+    pool
+      .query(
+        `INSERT INTO likes (user_id, resource_id)
+        VALUES ($1, $2)
+        RETURNING *;
+      `,
+        [user_id, resource_id]
+      )
+      // returns newly created like - this may be unnecessary
+      .then((result) => result.rows[0])
+      .catch((err) => err.message)
+  );
+};
+
+// 6.
+const removeLike = (like) => {
+  const { user_id, resource_id } = like;
+
+  return (
+    pool
+      .query(
+        `DELETE FROM likes
+          WHERE user_id = $1
+          AND resource_id = $2;
+      `,
+        [user_id, resource_id]
+      )
+      // returns empty object - this may be unnecessary
+      .then((result) => result.rows[0])
+      .catch((err) => err.message)
+  );
+};
+
+// 7.
+const getAllResources = () => {
+  return pool
+    .query("SELECT * FROM resources;")
+    .then((result) => result.rows)
+    .catch((err) => err.message);
+};
+
+// 8.
+const addResource = (newResource) => {
+  const { owner_id, title, description, type, topic, url } = newResource;
+
+  return (
+    pool
+      .query(
+        `INSERT INTO resources (owner_id, title, description, type, topic, url)
+        VALUES ($1, $2, $3, $4, $5, $6)
+        RETURNING *;
+      `,
+        [owner_id, title, description, type, topic, url]
+      )
+      // returns newly created resource - this may be unnecessary
+      .then((result) => result.rows[0])
+      .catch((err) => err.message)
+  );
+};
+
 // (optional for now)
 // addUser
 // updateRating
@@ -183,7 +174,7 @@ module.exports = {
   getLikedByUser,
   getOwnedByUser,
   getResourceComments,
-  getResourceRatings,
+  getResourceRating,
   addResource,
   addComment,
   addLike,

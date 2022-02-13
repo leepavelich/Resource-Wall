@@ -22,16 +22,6 @@ module.exports = (database) => {
       });
   });
 
-  router.get("/:id/owned", (req, res) => {
-    const { id } = req.params;
-
-    database
-      .getOwnedByUser(id)
-      .then((resources) => res.send({ resources }))
-      .catch((e) => {
-        console.error(e);
-        res.send(e);
-      });
-  });
+  
   return router;
 };
