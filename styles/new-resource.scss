@@ -1,0 +1,54 @@
+@import "variables";
+
+.new-resource {
+  display: flex;
+  width: 80%;
+  margin-left: 10%;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#resource-text {
+  border-bottom: 5px solid #545149;
+  padding: 10px;
+}
+
+textarea {
+  background: transparent;
+  width: 100%;
+  resize: none;
+  border: 0px;
+  height: 3em;
+}
+
+.new-resource-footer {
+  display: flex;
+  font-family: $body-font;
+  margin-top: 0.25em;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.btn {
+  border: none;
+  padding: 5px 10px 5px 10px;
+  background-color: #4056A1;
+  color: white;
+}
+
+.btn:hover {
+  background-color: #d09e41
+}
+
+.btn:active {
+  transform: scale(0.8);
+}
+
+.validation-error-msg {
+  display: none;
+  color:red;
+  text-align: left;
+  margin-top: 0.5em;
+}

@@ -1,0 +1,89 @@
+@import "variables";
+
+article.resource {
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0.7em;
+  margin: 0;
+  width: 80%;
+  margin-left: 10%;
+  border-style: solid;
+}
+
+article.resource:hover {
+  box-shadow: 5px 5px #c8c8e1;
+}
+
+article.resource header {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+article.resource header .avatar {
+  width: 30px;
+  margin-right: 0.5em;
+}
+
+article.resource header .name {
+  flex-grow: 0;
+}
+
+article.resource header .handle {
+  display: flex;
+  justify-content: flex-end;
+  flex-grow: 1;
+  color: #babace;
+}
+
+article.resource .resource-content {
+  // border-bottom: 5px solid $body-color;
+  margin-top: 0.5em;
+  margin-bottom: 1em;
+}
+
+article.resource .resource-content-text {
+  word-wrap: break-word;
+  text-align: left;
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+}
+
+article.resource footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-size: 60%;
+}
+
+article.resource footer .days-ago {
+  padding-left: 1em;
+}
+
+article.resource footer .icons {
+  display: flex;
+  padding-right: 1em;
+  color: #4b5499;
+}
+
+article.resource footer .icons span {
+  width: 2em;
+}
+
+article.resource footer .icons #flag:hover {
+  color: coral;
+}
+
+article.resource footer .icons #retweet:hover {
+  color: aquamarine;
+}
+
+article.resource footer .icons #like:hover {
+  color: palevioletred;
+}
+
+article.resource + article.resource {
+  margin-top: 1em;
+}

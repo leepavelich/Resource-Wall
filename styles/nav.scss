@@ -1,0 +1,54 @@
+@import "variables";
+
+nav {
+  display: flex;
+  height: 120px;
+  width: 100%;
+  background-color: cadetblue;
+  color: #FFFFFF;
+  padding-left: 1.5em;
+  padding-right: 1.5em;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+  position: fixed;
+  align-content: space-around;
+  z-index: 2;
+
+  .logo {
+    font-family: $body-font;
+    font-size: 42px;
+    padding-bottom: 0.5em;
+    justify-content: space-around;
+  }
+
+  // .new-resource-nav {
+  //   display: flex;
+  //   flex-direction: column;
+  //   gap: 0.25em;
+  //   padding-bottom: 0.1em;
+  //   align-items: center;
+  // }
+
+  // .new-resource-nav:hover {
+  //   cursor: pointer;
+  // }
+
+  // .new-resource-icon {
+  //   background-color: transparent;
+  //   border: none;
+  //   color: red;
+  //   animation-name: bounce;
+  //   animation-duration: 1s;
+  //   animation-direction: alternate;
+  //   animation-timing-function: ease-in-out;
+  //   animation-iteration-count: infinite;
+  // }
+
+  // @keyframes bounce {
+  //   0% {transform: translateY(0); color: red}
+  //   50% {transform: translateY(-0.5em); color: orangered}
+  //   100% {transform: translateY(0); color: darkorange}
+  // }
+
+}
