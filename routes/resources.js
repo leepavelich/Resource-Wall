@@ -33,11 +33,23 @@ module.exports = (database) => {
       });
   });
 
-  router.post("/likes", (req, res) => {
-    const newLike = req.body;
+  router.post("/like", (req, res) => {
+    const like = req.body;
 
     database
-      .addLike(newLike)
+      .addLike(like)
+      .then((resources) => res.send({ resources }))
+      .catch((e) => {
+        console.error(e);
+        res.send(e);
+      });
+  });
+
+  router.post("/unlike", (req, res) => {
+    const like = req.body;
+
+    database
+      .removeLike(like)
       .then((resources) => res.send({ resources }))
       .catch((e) => {
         console.error(e);

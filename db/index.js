@@ -117,8 +117,8 @@ const addComment = (newComment) => {
   );
 };
 
-const addLike = (newLike) => {
-  const { user_id, resource_id } = newLike;
+const addLike = (like) => {
+  const { user_id, resource_id } = like;
 
   return (
     pool
@@ -134,7 +134,24 @@ const addLike = (newLike) => {
       .catch((err) => err.message)
   );
 };
-// removeLike
+
+const removeLike = (like) => {
+  const { user_id, resource_id } = like;
+
+  return (
+    pool
+      .query(
+        `DELETE FROM likes
+          WHERE user_id = $1
+          AND resource_id = $2;
+      `,
+        [user_id, resource_id]
+      )
+      // returns empty object - this may be unnecessary
+      .then((result) => result.rows[0])
+      .catch((err) => err.message)
+  );
+};
 // addRating
 
 // (optional for now)
@@ -153,4 +170,5 @@ module.exports = {
   addResource,
   addComment,
   addLike,
+  removeLike,
 };
