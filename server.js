@@ -8,7 +8,7 @@ const express = require("express");
 const app = express();
 const morgan = require("morgan");
 
-const db = require('./db')
+const db = require("./db");
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
@@ -31,12 +31,12 @@ app.use(express.static("public"));
 
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
-// const usersRoutes = require("./routes/users");
+const usersRoutes = require("./routes/users");
 const resourcesRoutes = require("./routes/resources");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
-// app.use("/api/users", usersRoutes(db));
+app.use("/api/users", usersRoutes(db));
 app.use("/api/resources", resourcesRoutes(db));
 // Note: mount other resources here, using the same pattern above
 

@@ -1,4 +1,4 @@
-INSERT INTO ratings (owner_id, resource_id, rating)
+INSERT INTO ratings (user_id, resource_id, rating)
 VALUES (1, 2, 5),
   (2, 1, 4),
   (2, 3, 5),
