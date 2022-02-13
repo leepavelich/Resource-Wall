@@ -11,17 +11,19 @@ $(() => {
 });
 
 const createResourceElement = (resource) => {
+  console.log(resource);
   const timeAgo = timeago.format(resource.created_at);
 
   const $resource = `
   <article class="resource">
     <header>
-      <image class="avatar" src=avatar></image>
-      <div class="name"></div>
+      <!-- <image class="avatar" src=avatar></image> -->
+      <div class="title">${resource.title}</div>
       <div class="handle"></div>
     </header>
     <div class="resource-content">
-      <p class="resource-content-text"></p>
+      <p class="resource-content-text">${resource.description}</p>
+      <p class="resource-url"><a href="${resource.url}"></a></p>
     </div>
     <footer>
       <div class="days-ago">${timeAgo}</div>
