@@ -57,6 +57,18 @@ module.exports = (database) => {
       });
   });
 
+  router.post("/ratings", (req, res) => {
+    const newRating = req.body;
+
+    database
+      .addRating(newRating)
+      .then((resources) => res.send({ resources }))
+      .catch((e) => {
+        console.error(e);
+        res.send(e);
+      });
+  });
+
   router.get("/:id/ratings", (req, res) => {
     const { id } = req.params;
 

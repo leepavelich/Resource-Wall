@@ -152,7 +152,24 @@ const removeLike = (like) => {
       .catch((err) => err.message)
   );
 };
-// addRating
+
+const addRating = (newRating) => {
+  const { user_id, resource_id, rating } = newRating;
+
+  return (
+    pool
+      .query(
+        `INSERT INTO ratings (user_id, resource_id, rating)
+        VALUES ($1, $2, $3)
+        RETURNING *;
+      `,
+        [user_id, resource_id, rating]
+      )
+      // returns new rating - this may be unnecessary
+      .then((result) => result.rows[0])
+      .catch((err) => err.message)
+  );
+};
 
 // (optional for now)
 // addUser
@@ -171,4 +188,5 @@ module.exports = {
   addComment,
   addLike,
   removeLike,
+  addRating,
 };
