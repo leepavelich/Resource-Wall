@@ -155,7 +155,12 @@ const removeLike = (like) => {
 // 8.
 const getAllResources = () => {
   return pool
-    .query("SELECT * FROM resources;")
+    .query(
+      `SELECT title, description, type, topic, url, created_at, username
+        FROM resources
+        INNER JOIN users ON owner_id = users.id;
+      `
+    )
     .then((result) => result.rows)
     .catch((err) => err.message);
 };
