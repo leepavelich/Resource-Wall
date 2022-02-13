@@ -77,7 +77,7 @@ const getResourceRatings = (resourceId) => {
       `,
       [resourceId]
     )
-    .then((result) => result.rows)
+    .then((result) => result.rows[0])
     .catch((err) => err.message);
 };
 

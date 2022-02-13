@@ -9,7 +9,7 @@ const express = require("express");
 const router = express.Router();
 
 module.exports = (database) => {
-  router.get("/likes/:id", (req, res) => {
+  router.get("/liked/:id", (req, res) => {
     const { id } = req.params;
     console.log(id);
 
