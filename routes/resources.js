@@ -9,6 +9,18 @@ const express = require("express");
 const router = express.Router();
 
 module.exports = (database) => {
+  router.get("/ratings/:id", (req, res) => {
+    const { id } = req.params;
+
+    database
+      .getResourceRatings(id)
+      .then((resources) => res.send({ resources }))
+      .catch((e) => {
+        console.error(e);
+        res.send(e);
+      });
+  });
+
   router.get("/comments/:id", (req, res) => {
     const { id } = req.params;
 

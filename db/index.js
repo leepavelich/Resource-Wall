@@ -66,7 +66,20 @@ const getResourceComments = (resourceId) => {
     .then((result) => result.rows)
     .catch((err) => err.message);
 };
-// getResourceRatings (SQL return avg)
+
+const getResourceRatings = (resourceId) => {
+  return pool
+    .query(
+      `SELECT ROUND(AVG(rating), 1) AS average_rating
+        FROM ratings
+        WHERE resource_id = $1
+        GROUP BY resource_id;
+      `,
+      [resourceId]
+    )
+    .then((result) => result.rows)
+    .catch((err) => err.message);
+};
 
 // addResource
 // addComment
@@ -86,4 +99,5 @@ module.exports = {
   getLikesByUser,
   getOwnedByUser,
   getResourceComments,
+  getResourceRatings,
 };
