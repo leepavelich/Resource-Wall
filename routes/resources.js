@@ -9,6 +9,18 @@ const express = require("express");
 const router = express.Router();
 
 module.exports = (database) => {
+  router.get("/comments/:id", (req, res) => {
+    const { id } = req.params;
+
+    database
+      .getResourceComments(id)
+      .then((resources) => res.send({ resources }))
+      .catch((e) => {
+        console.error(e);
+        res.send(e);
+      });
+  });
+
   router.get("/ratings/:id", (req, res) => {
     const { id } = req.params;
 
@@ -21,11 +33,11 @@ module.exports = (database) => {
       });
   });
 
-  router.get("/comments/:id", (req, res) => {
-    const { id } = req.params;
+  router.post("/", (req, res) => {
+    const newResource = req.body;
 
     database
-      .getResourceComments(id)
+      .addResource(newResource)
       .then((resources) => res.send({ resources }))
       .catch((e) => {
         console.error(e);

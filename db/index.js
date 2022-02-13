@@ -81,7 +81,23 @@ const getResourceRatings = (resourceId) => {
     .catch((err) => err.message);
 };
 
-// addResource
+const addResource = (newResource) => {
+  const { owner_id, title, description, type, topic, url } = newResource;
+
+  return (
+    pool
+      .query(
+        `INSERT INTO resources (owner_id, title, description, type, topic, url)
+        VALUES ($1, $2, $3, $4, $5, $6)
+        RETURNING *;
+      `,
+        [owner_id, title, description, type, topic, url]
+      )
+      // returns newly created resource - this may be unnecessary
+      .then((result) => result.rows[0])
+      .catch((err) => err.message)
+  );
+};
 // addComment
 // addLike
 // removeLike
@@ -100,4 +116,5 @@ module.exports = {
   getOwnedByUser,
   getResourceComments,
   getResourceRatings,
+  addResource,
 };
