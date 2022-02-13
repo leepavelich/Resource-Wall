@@ -14,7 +14,7 @@ module.exports = (database) => {
     console.log(id);
 
     database
-      .getLikesByUser(id)
+      .getLikedByUser(id)
       .then((resources) => res.send({ resources }))
       .catch((e) => {
         console.error(e);

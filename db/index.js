@@ -30,7 +30,7 @@ const getAllResources = () => {
     .catch((err) => err.message);
 };
 
-const getLikesByUser = (userId) => {
+const getLikedByUser = (userId) => {
   return pool
     .query(
       `SELECT * FROM resources
@@ -96,7 +96,7 @@ const getResourceRatings = (resourceId) => {
 module.exports = {
   getUserWithEmail,
   getAllResources,
-  getLikesByUser,
+  getLikedByUser,
   getOwnedByUser,
   getResourceComments,
   getResourceRatings,
