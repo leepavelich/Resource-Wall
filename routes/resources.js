@@ -9,7 +9,7 @@ const express = require("express");
 const router = express.Router();
 
 module.exports = (database) => {
-  router.get("/comments/:id", (req, res) => {
+  router.get("/:id/comments", (req, res) => {
     const { id } = req.params;
 
     database
@@ -34,7 +34,7 @@ module.exports = (database) => {
       });
   });
 
-  router.get("/ratings/:id", (req, res) => {
+  router.get("/:id/ratings", (req, res) => {
     const { id } = req.params;
 
     database

@@ -9,7 +9,7 @@ const express = require("express");
 const router = express.Router();
 
 module.exports = (database) => {
-  router.get("/liked/:id", (req, res) => {
+  router.get("/:id/liked", (req, res) => {
     const { id } = req.params;
     console.log(id);
 
@@ -22,7 +22,7 @@ module.exports = (database) => {
       });
   });
 
-  router.get("/owned/:id", (req, res) => {
+  router.get("/:id/owned", (req, res) => {
     const { id } = req.params;
 
     database
