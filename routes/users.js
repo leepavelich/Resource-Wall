@@ -9,9 +9,9 @@ const express = require("express");
 const router = express.Router();
 
 module.exports = (database) => {
+  // get all resources likes by a user
   router.get("/:id/liked", (req, res) => {
     const { id } = req.params;
-    console.log(id);
 
     database
       .getLikedByUser(id)
@@ -22,6 +22,5 @@ module.exports = (database) => {
       });
   });
 
-  
   return router;
 };
