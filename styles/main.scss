@@ -18,13 +18,13 @@ main {
 
 .search-wrapper {
   // background-color: lightgray;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  // display: flex;
+  // flex-direction: column;
+  // align-items: center;
+  margin: 0 auto 1rem;
   width: 60%;
   max-width: $max-width;
   min-width: $min-width;
-  margin-left: 20%;
   margin-top: 5vh;
   position: sticky;
   top: 12vh;
@@ -45,6 +45,7 @@ main {
   min-width: $min-width;
   padding-top: 10vh;
   justify-content: flex-start;
+
   // text-align: center;
 }
 
