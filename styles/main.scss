@@ -16,10 +16,31 @@ main {
   z-index: 0;
 }
 
+.search-wrapper {
+  // background-color: lightgray;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 60%;
+  max-width: $max-width;
+  min-width: $min-width;
+  margin-top: 1em;
+  margin-left: 20%;
+  filter: brightness(1.2);
+}
+
+.search-wrapper input[type=search] {
+  all: unset;
+  width: 100%;
+  padding-left: 1em;
+  border-radius: 10px;
+  background-color: linen;
+}
+
 .container {
   flex-direction: column;
-  max-width: 1040px;
-  min-width: 520px;
+  max-width: $max-width;
+  min-width: $min-width;
   padding-top: 120px;
   justify-content: flex-start;
   // text-align: center;
