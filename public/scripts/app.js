@@ -10,11 +10,32 @@ $(() => {
   // resourceSubmission();  // compose tweet box
   scrollToTopButton(); // bottom-right scroll-to-top button
 });
+
 // load resources
 const loadResources = () => {
-  $.get("/api/resources", renderResources).then((data) => {
-    loadComments(data);
+  let resources = [];
+  $.get("/api/resources", renderResources)
+    .then((data) => {
+      loadComments(data);
+
+      resources = data.resources;
+      console.log(resources);
   });
+
+  const searchInput = document.querySelector('[data-search]');
+
+      searchInput.addEventListener('input', e => {
+        const value = e.target.value;
+        resources.forEach(rsc => {
+          const isVisible = rsc.title.toLowerCase().includes(value) ||
+                            rsc.description.toLowerCase().includes(value) ||
+                            rsc.topic.toLowerCase().includes(value) ||
+                            rsc.title.includes(value) ||
+                            rsc.description.includes(value) ||
+                            rsc.topic.includes(value);
+          !isVisible ? $(`#${rsc.id}`).hide() : $(`#${rsc.id}`).show();
+        })
+      })
 };
 
 const renderResources = (resourcesObj) => {
@@ -41,7 +62,7 @@ const prepareSubmit = () => {
 const createResourceElement = (resource) => {
   const timeAgo = timeago.format(resource.created_at);
   const $resource = `
-  <article class="resource">
+  <article class="resource" id="${resource.id}">
     <header>
       <div class="title">${resource.title}</div>
       <div class="handle">${resource.username}</div>
