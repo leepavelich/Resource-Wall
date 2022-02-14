@@ -3,12 +3,12 @@
  * jQuery is already loaded
  */
 
+// app.js require
+
 $(() => {
   loadResources(); // initial page load
   prepareSubmit();
   toggleNew();
-  // newTweetIconClick();  // top-right compose button
-  // resourceSubmission();  // compose tweet box
   scrollToTopButton(); // bottom-right scroll-to-top button
 });
 
@@ -30,12 +30,12 @@ const loadResources = () => {
     loadComments(data);
 
     resources = data.resources;
-    console.log(resources);
   });
 
-  const searchInput = document.querySelector("[data-search]");
+  // const searchInput = document.querySelector("[data-search]");
+  // searchInput.addEventListener
 
-  searchInput.addEventListener("input", (e) => {
+  $("[data-search]").on("input", (e) => {
     const value = e.target.value;
     resources.forEach((rsc) => {
       const isVisible =
@@ -51,12 +51,12 @@ const loadResources = () => {
 };
 
 const renderResources = (resourcesObj) => {
-  const $resourcesContainer = $(".resource-container");
-  $resourcesContainer.empty();
+  const $resourceContainer = $(".resource-container");
+  $resourceContainer.empty();
 
   resourcesObj.resources.forEach((resource) => {
     const $resource = createResourceElement(resource);
-    $resourcesContainer.prepend($resource);
+    $resourceContainer.prepend($resource);
   });
 };
 
@@ -64,8 +64,6 @@ const prepareSubmit = () => {
   const currentUserId = document.cookie.split("=")[1];
 
   $("#new-resource-owner-id").val(currentUserId);
-  console.log($("#new-resource-owner-id").val());
-
   $(".new-resource-footer button").on("click", () => {
     loadResources();
   });
@@ -102,60 +100,6 @@ const createResourceElement = (resource) => {
   </article>
   `;
   return $resource;
-};
-
-// escape XSS
-// const escape = function (str) {
-//   let div = document.createElement("div");
-//   div.appendChild(document.createTextNode(str));
-//   return div.innerHTML;
-// };
-
-const loadComments = (data) => {
-  const resourceComments = data.resources;
-
-  for (const item of resourceComments) {
-    const resourceId = item.id;
-    $.get(`/api/resources/${resourceId}/comments`).then((response) => {
-      addDisplayToggle(resourceId);
-      renderComments(response, resourceId);
-    });
-  }
-};
-
-// toggle comments visibility
-const addDisplayToggle = (id) => {
-  $(`#comment-${id}`).on("click", () => {
-    $(`#resource-${id}-comments`).parent().toggle();
-  });
-};
-
-// append fetched comments
-const renderComments = (commentsObj, id) => {
-  const $commentsContainer = $(`#resource-${id}-comments`);
-  $commentsContainer.empty();
-  commentsObj.resources.forEach((comment) => {
-    const $comment = createCommentElement(comment);
-    $commentsContainer.append($comment);
-  });
-};
-
-const createCommentElement = (data) => {
-  const { username, comment, created_at, avatar_photo_url } = data;
-
-  const $comment = `
-  <div class="comment-container">
-    <div class="user-info">
-      <img class="avatar" alt="user avatar" src=${avatar_photo_url}></img>
-      <p>@${username}</p>
-    </div>
-    <div class="comment-content">
-      <p>${comment}</p>
-      <p>${timeago.format(created_at)}</p>
-    </div>
-  </div>
-  `;
-  return $comment;
 };
 
 const scrollToTopButton = () => {
