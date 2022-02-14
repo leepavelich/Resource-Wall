@@ -21,7 +21,7 @@ const createResourceElement = (resource) => {
     </header>
     <div class="resource-content">
       <p class="resource-content-text">${resource.description}</p>
-      <p class="resource-url"><a href="${resource.url}">${resource.url}</a></p>
+      <p class="resource-url"><a href="${resource.url}" target="_blank">${resource.url}</a></p>
     </div>
     <div class="comments-section">
       <p>Comments</p>
