@@ -34,8 +34,9 @@ const createResourceElement = (resource) => {
     <footer>
       <div class="days-ago">Created ${timeAgo}</div>
       <div class="icons">
-        <button><i class="fas fa-heart"></i></button>
-        <button id="comment-${resource.id}"><i class="fa-solid fa-comment"></i></button>
+        <button><i class="fas fa-heart"> 3</i></button>
+        <button id="comment-${resource.id}"><i class="fa-solid fa-comment"> 4</i></button>
+        <button><i class="fa-solid fa-star"> 3.7</i></button>
       </div>
     </footer>
   </article>
