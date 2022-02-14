@@ -1,25 +1,36 @@
 @import "variables";
 
 nav {
-  display: flex;
-  height: 120px;
+  height: 10vh;
   width: 100%;
-  background-color: cadetblue;
-  color: #FFFFFF;
-  padding-left: 1.5em;
-  padding-right: 1.5em;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: flex-end;
+  background-color: rgb(78, 126, 128);
+  color: #ffffff;
+  padding: 0.5em 1.5em 0;
+  display: flex;
+  justify-content: flex-start;
+  align-items: baseline;
   position: fixed;
-  align-content: space-around;
-  z-index: 2;
+  font-size: smaller;
+
+  .btn {
+    margin-left: 1rem;
+    background-color: transparent;
+    padding: 4px 8px 2px;
+    border-radius: 8px;
+  }
+
+  .btn:last-child {
+    margin-left: auto;
+  }
+
+  .btn:hover {
+    background-color: white;
+    color: black;
+  }
 
   .logo {
     font-family: $body-font;
-    font-size: 42px;
-    padding-bottom: 0.5em;
-    justify-content: space-around;
+    font-size: 2rem;
   }
 
   // .new-resource-nav {
@@ -50,5 +61,4 @@ nav {
   //   50% {transform: translateY(-0.5em); color: orangered}
   //   100% {transform: translateY(0); color: darkorange}
   // }
-
 }
