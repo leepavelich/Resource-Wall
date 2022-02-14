@@ -68,6 +68,11 @@ article.resource footer {
 article.resource footer .icons {
   display: flex;
   padding-right: 1em;
+}
+
+article.resource footer .icons button {
+  border: none;
+  font-size: 16px;
   color: #4b5499;
 }
 
@@ -75,12 +80,16 @@ article.resource footer .icons span {
   width: 2em;
 }
 
+article.resource footer .icons .fa-heart:hover {
+  color: palevioletred;
+}
+
 article.resource footer .icons .fa-comment:hover {
   color: aquamarine;
 }
 
-article.resource footer .icons .fa-heart:hover {
-  color: palevioletred;
+article.resource footer .icons .fa-star:hover {
+  color: gold;
 }
 
 article.resource + article.resource {
