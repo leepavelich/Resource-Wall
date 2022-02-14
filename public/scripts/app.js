@@ -14,28 +14,28 @@ $(() => {
 // load resources
 const loadResources = () => {
   let resources = [];
-  $.get("/api/resources", renderResources)
-    .then((data) => {
-      loadComments(data);
+  $.get("/api/resources", renderResources).then((data) => {
+    loadComments(data);
 
-      resources = data.resources;
-      console.log(resources);
+    resources = data.resources;
+    console.log(resources);
   });
 
-  const searchInput = document.querySelector('[data-search]');
+  const searchInput = document.querySelector("[data-search]");
 
-      searchInput.addEventListener('input', e => {
-        const value = e.target.value;
-        resources.forEach(rsc => {
-          const isVisible = rsc.title.toLowerCase().includes(value) ||
-                            rsc.description.toLowerCase().includes(value) ||
-                            rsc.topic.toLowerCase().includes(value) ||
-                            rsc.title.includes(value) ||
-                            rsc.description.includes(value) ||
-                            rsc.topic.includes(value);
-          !isVisible ? $(`#${rsc.id}`).hide() : $(`#${rsc.id}`).show();
-        })
-      })
+  searchInput.addEventListener("input", (e) => {
+    const value = e.target.value;
+    resources.forEach((rsc) => {
+      const isVisible =
+        rsc.title.toLowerCase().includes(value) ||
+        rsc.description.toLowerCase().includes(value) ||
+        rsc.topic.toLowerCase().includes(value) ||
+        rsc.title.includes(value) ||
+        rsc.description.includes(value) ||
+        rsc.topic.includes(value);
+      !isVisible ? $(`#${rsc.id}`).hide() : $(`#${rsc.id}`).show();
+    });
+  });
 };
 
 const renderResources = (resourcesObj) => {
@@ -156,8 +156,6 @@ const scrollToTopButton = () => {
   });
 
   $scrollToTop.click(() => {
-    const $new = $("#new-tweet-form");
-    $new.slideDown("fast");
-    $("#tweet-text").focus();
+    $(".search-wrapper > input").focus();
   });
 };
