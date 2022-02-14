@@ -25,7 +25,7 @@ const createResourceElement = (resource) => {
     </div>
     <div class="comments-section">
       <p>Comments</p>
-      <section id="resource-${resource.id}-comments"></section>
+      <section id="resource-${resource.id}-comments" hidden></section>
       <form action="/api/resources/comments" method="POST">
         <input type="text" name="comment">
         <button type="button">Comment</button>
@@ -53,24 +53,36 @@ const escape = function (str) {
 // load resources
 const loadResources = () => {
   $.get("/api/resources", renderResources).then((data) => {
-    for (const item of data.resources) {
-      $.get(`/api/resources/${item.id}/comments`).then((res) => {
-        const $commentsContainer = $(`#resource-${item.id}-comments`);
-        $commentsContainer.empty();
-        for (const item of res.resources) {
-          $commentsContainer.append(
-            `
-            <div>
-              <p>${item.username}: ${item.comment}</p>
-              <p>${timeago.format(item.created_at)}</p>
-            </div>
-            `
-          );
-        }
-      });
-      // comments += `<p>${item.comment}</p>`;
-    }
+    renderComments(data);
   });
+};
+
+const renderComments = (data) => {
+  const resourceComments = data.resources;
+
+  for (const item of resourceComments) {
+    const resourceId = item.id;
+    $.get(`/api/resources/${resourceId}/comments`).then((res) => {
+      // toggle comments visibility
+      $(`#comment-${resourceId}`).on("click", () => {
+        $(`#resource-${resourceId}-comments`).toggle("hide");
+      });
+
+      // append fetched comments
+      const $commentsContainer = $(`#resource-${resourceId}-comments`);
+      $commentsContainer.empty();
+      for (const item of res.resources) {
+        $commentsContainer.append(
+          `
+          <div>
+            <p>${item.username}: ${item.comment}</p>
+            <p>${timeago.format(item.created_at)}</p>
+          </div>
+          `
+        );
+      }
+    });
+  }
 };
 
 const renderResources = (resourcesObj) => {
