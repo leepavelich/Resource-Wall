@@ -1,7 +1,7 @@
 @import "variables";
 
 article.resource {
-  display:flex;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   padding: 0.7em;
@@ -17,24 +17,21 @@ article.resource:hover {
 
 article.resource header {
   display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
+  justify-content: space-between;
+  align-items: baseline;
 }
 
-article.resource header .avatar {
-  width: 30px;
-  margin-right: 0.5em;
-}
-
-article.resource header .name {
-  flex-grow: 0;
-}
+// article.resource header .avatar {
+//   width: 30px;
+//   margin-left: auto;
+//   margin-right: 0.5em;
+// }
 
 article.resource header .handle {
-  display: flex;
-  justify-content: flex-end;
-  flex-grow: 1;
+  // display: flex;
+  // justify-content: flex-end;
+  // flex-grow: 1;
+  font-size: 1rem;
   color: #babace;
 }
 
@@ -49,6 +46,12 @@ article.resource .resource-content-text {
   text-align: left;
   margin-left: 0.5em;
   margin-right: 0.5em;
+}
+
+article.resource .resource-url {
+  text-align: start;
+  margin-right: auto;
+  font-size: 1rem;
 }
 
 article.resource footer {
@@ -72,11 +75,7 @@ article.resource footer .icons span {
   width: 2em;
 }
 
-article.resource footer .icons #flag:hover {
-  color: coral;
-}
-
-article.resource footer .icons #retweet:hover {
+article.resource footer .icons #comment:hover {
   color: aquamarine;
 }
 

@@ -1,26 +1,26 @@
 -- Users table seeds here (Example)
 INSERT INTO users (username, email, password, avatar_photo_url)
 VALUES (
-    'Frodo Baggins',
+    '@frodobaggins',
     'frodo@lotr.com',
-    '@hobbit',
+    'password',
     'https://avatars.dicebear.com/api/bottts/frodo.svg'
   ),
   (
-    'Gollum',
+    '@gollum',
     'gollum@lotr.com',
-    '@washobbit',
+    'password',
     'https://avatars.dicebear.com/api/bottts/gollum.svg'
   ),
   (
-    'Gandalf the Grey',
+    '@galdalfthegrey',
     'galdalf@lotr.com',
-    '@wizard',
+    'password',
     'https://avatars.dicebear.com/api/bottts/galdalf.svg'
   ),
   (
-    'Legolas',
+    '@legolas',
     'legolas@lotr.com',
-    '@elf',
+    'password',
     'https://avatars.dicebear.com/api/bottts/legolas.svg'
   );

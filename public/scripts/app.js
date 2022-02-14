@@ -17,20 +17,19 @@ const createResourceElement = (resource) => {
   const $resource = `
   <article class="resource">
     <header>
-      <!-- <image class="avatar" src=avatar></image> -->
+    <!-- <img class="avatar" alt="user avatar" src=${resource.avatar_photo_url}></img> -->
       <div class="title">${resource.title}</div>
-      <div class="handle"></div>
+      <div class="handle">${resource.username}</div>
     </header>
     <div class="resource-content">
       <p class="resource-content-text">${resource.description}</p>
-      <p class="resource-url"><a href="${resource.url}"></a></p>
+      <p class="resource-url"><a href="${resource.url}">${resource.url}</a></p>
     </div>
     <footer>
-      <div class="days-ago">${timeAgo}</div>
+      <div class="days-ago">Created ${timeAgo}</div>
       <div class="icons">
-        <span><i class="fas fa-flag" id="flag"></i></span>
-        <span><i class="fas fa-retweet" id="retweet"></i></span>
-        <span><i class="fas fa-heart" id="like"></i></span>
+      <button><i class="fas fa-heart" id="like"></i></button>
+      <button><i class="fa-solid fa-comment" id="comment"></i></button>
       </div>
     </footer>
   </article>
