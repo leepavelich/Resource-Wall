@@ -35,7 +35,7 @@ const getLikedByUser = (userId) => {
 const getResourceComments = (resourceId) => {
   return pool
     .query(
-      `SELECT comment, comments.created_at, username FROM comments
+      `SELECT comment, comments.created_at, username, avatar_photo_url FROM comments
         INNER JOIN users ON comments.user_id = users.id
         WHERE resource_id = $1;
       `,
@@ -157,7 +157,7 @@ const removeLike = (like) => {
 const getAllResources = () => {
   return pool
     .query(
-      `SELECT resources.id, title, description, type, topic, url, resources.created_at, username, avatar_photo_url
+      `SELECT resources.id, title, description, type, topic, url, resources.created_at, username
         FROM resources
         INNER JOIN users ON owner_id = users.id;
       `

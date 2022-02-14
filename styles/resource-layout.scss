@@ -99,3 +99,42 @@ article.resource + article.resource {
 .comments-section {
   display: none;
 }
+
+.comment-container {
+  border: 2px solid black;
+  border-radius: 8px;
+  background-color: white;
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+
+  p {
+    margin: 0;
+    font-size: 1.2rem;
+  }
+
+  .user-info {
+    display: flex;
+    align-items: center;
+  }
+
+  .user-info p {
+    margin-left: 0.5rem;
+  }
+
+  img {
+    width: 2.5rem;
+  }
+
+  .comment-content {
+    margin-top: 0.5rem;
+
+    p:first-child {
+      font-size: 1rem;
+    }
+
+    p:last-child {
+      text-align: right;
+      font-size: 0.8rem;
+    }
+  }
+}

@@ -9,13 +9,28 @@ $(() => {
   // resourceSubmission();  // compose tweet box
   scrollToTopButton(); // bottom-right scroll-to-top button
 });
+// load resources
+const loadResources = () => {
+  $.get("/api/resources", renderResources).then((data) => {
+    loadComments(data);
+  });
+};
+
+const renderResources = (resourcesObj) => {
+  const $resourcesContainer = $(".resource-container");
+  $resourcesContainer.empty();
+
+  resourcesObj.resources.forEach((resource) => {
+    const $resource = createResourceElement(resource);
+    $resourcesContainer.prepend($resource);
+  });
+};
 
 const createResourceElement = (resource) => {
   const timeAgo = timeago.format(resource.created_at);
   const $resource = `
   <article class="resource">
     <header>
-    <!-- <img class="avatar" alt="user avatar" src=${resource.avatar_photo_url}></img> -->
       <div class="title">${resource.title}</div>
       <div class="handle">${resource.username}</div>
     </header>
@@ -45,55 +60,57 @@ const createResourceElement = (resource) => {
 };
 
 // escape XSS
-const escape = function (str) {
-  let div = document.createElement("div");
-  div.appendChild(document.createTextNode(str));
-  return div.innerHTML;
-};
+// const escape = function (str) {
+//   let div = document.createElement("div");
+//   div.appendChild(document.createTextNode(str));
+//   return div.innerHTML;
+// };
 
-// load resources
-const loadResources = () => {
-  $.get("/api/resources", renderResources).then((data) => {
-    renderComments(data);
-  });
-};
-
-const renderComments = (data) => {
+const loadComments = (data) => {
   const resourceComments = data.resources;
 
   for (const item of resourceComments) {
     const resourceId = item.id;
-    $.get(`/api/resources/${resourceId}/comments`).then((res) => {
-      // toggle comments visibility
-      $(`#comment-${resourceId}`).on("click", () => {
-        $(`#resource-${resourceId}-comments`).parent().toggle();
-      });
-
-      // append fetched comments
-      const $commentsContainer = $(`#resource-${resourceId}-comments`);
-      $commentsContainer.empty();
-      for (const item of res.resources) {
-        $commentsContainer.append(
-          `
-          <div>
-            <p>${item.username}: ${item.comment}</p>
-            <p>${timeago.format(item.created_at)}</p>
-          </div>
-          `
-        );
-      }
+    $.get(`/api/resources/${resourceId}/comments`).then((response) => {
+      addDisplayToggle(resourceId);
+      renderComments(response, resourceId);
     });
   }
 };
 
-const renderResources = (resourcesObj) => {
-  const $resourcesContainer = $(".resource-container");
-  $resourcesContainer.empty();
-
-  resourcesObj.resources.forEach((resource) => {
-    const $resource = createResourceElement(resource);
-    $resourcesContainer.prepend($resource);
+// toggle comments visibility
+const addDisplayToggle = (id) => {
+  $(`#comment-${id}`).on("click", () => {
+    $(`#resource-${id}-comments`).parent().toggle();
   });
+};
+
+// append fetched comments
+const renderComments = (commentsObj, id) => {
+  const $commentsContainer = $(`#resource-${id}-comments`);
+  $commentsContainer.empty();
+  commentsObj.resources.forEach((comment) => {
+    const $comment = createCommentElement(comment);
+    $commentsContainer.append($comment);
+  });
+};
+
+const createCommentElement = (data) => {
+  const { username, comment, created_at, avatar_photo_url } = data;
+
+  const $comment = `
+  <div class="comment-container">
+    <div class="user-info">
+      <img class="avatar" alt="user avatar" src=${avatar_photo_url}></img>
+      <p>@${username}</p>
+    </div>
+    <div class="comment-content">
+      <p>${comment}</p>
+      <p>${timeago.format(created_at)}</p>
+    </div>
+  </div>
+  `;
+  return $comment;
 };
 
 const scrollToTopButton = () => {
