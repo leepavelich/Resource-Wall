@@ -7,7 +7,7 @@ $(() => {
   loadResources(); // initial page load
   // newTweetIconClick();  // top-right compose button
   // resourceSubmission();  // compose tweet box
-  scrollToTopButton();  // bottom-right scroll-to-top button
+  scrollToTopButton(); // bottom-right scroll-to-top button
 });
 
 const createResourceElement = (resource) => {
@@ -39,7 +39,7 @@ const createResourceElement = (resource) => {
 };
 
 // escape XSS
-const escape = function(str) {
+const escape = function (str) {
   let div = document.createElement("div");
   div.appendChild(document.createTextNode(str));
   return div.innerHTML;
@@ -48,31 +48,31 @@ const escape = function(str) {
 // load resources
 
 const loadResources = () => {
-  $.get('/api/resources', renderResources);
+  $.get("/api/resources", renderResources);
 };
 
 const renderResources = (resourcesObj) => {
-  const $resourcesContainer = $('.resource-container');
+  const $resourcesContainer = $(".resource-container");
   $resourcesContainer.empty();
 
-  resourcesObj.resources.forEach(resource => {
+  resourcesObj.resources.forEach((resource) => {
     const $resource = createResourceElement(resource);
     $resourcesContainer.prepend($resource);
   });
 };
 
 const scrollToTopButton = () => {
-  const $scrollToTop = $('.scroll-to-top');
+  const $scrollToTop = $(".scroll-to-top");
 
-  $(window).scroll(function() {
+  $(window).scroll(function () {
     $(this).scrollTop() > 200
-      ? $scrollToTop.fadeIn().css('display', 'flex')
+      ? $scrollToTop.fadeIn().css("display", "flex")
       : $scrollToTop.fadeOut();
   });
 
   $scrollToTop.click(() => {
-    const $new = $('#new-tweet-form');
-    $new.slideDown('fast');
-    $('#tweet-text').focus();
+    const $new = $("#new-tweet-form");
+    $new.slideDown("fast");
+    $("#tweet-text").focus();
   });
 };
