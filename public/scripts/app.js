@@ -5,6 +5,7 @@
 
 $(() => {
   loadResources(); // initial page load
+  prepareSubmit();
   // newTweetIconClick();  // top-right compose button
   // resourceSubmission();  // compose tweet box
   scrollToTopButton(); // bottom-right scroll-to-top button
@@ -23,6 +24,17 @@ const renderResources = (resourcesObj) => {
   resourcesObj.resources.forEach((resource) => {
     const $resource = createResourceElement(resource);
     $resourcesContainer.prepend($resource);
+  });
+};
+
+const prepareSubmit = () => {
+  const currentUserId = document.cookie.split("=")[1];
+
+  $("#new-resource-owner-id").val(currentUserId);
+  console.log($("#new-resource-owner-id").val());
+
+  $(".new-resource-footer button").on("click", () => {
+    loadResources();
   });
 };
 
