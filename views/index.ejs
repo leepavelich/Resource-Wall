@@ -1,65 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <title>Resource Wall</title>
 
-<head>
-  <title>Resource Wall</title>
+    <!-- External CSS -->
+    <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+    <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+    <!-- App CSS -->
+    <link rel="stylesheet" href="/styles/main.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/nav.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/new-resource.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/resource-layout.css" type="text/css"
+    /">
 
-  <!-- External CSS -->
-  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
-  <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+    <!-- External JS -->
+    <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/timeago.js/4.0.2/timeago.min.js"
+      integrity="sha512-SVDh1zH5N9ChofSlNAK43lcNS7lWze6DTVx1JCXH1Tmno+0/1jMpdbR8YDgDUfcUrPp1xyE53G42GFrcM0CMVg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"
+    ></script>
+    <!-- App JS -->
+    <script type="text/javascript" src="/scripts/app.js"></script>
 
-  <!-- App CSS -->
-  <link rel="stylesheet" href="/styles/main.css" type="text/css" />
-  <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
-  <link rel="stylesheet" href="/styles/nav.css" type="text/css" />
-  <link rel="stylesheet" href="/styles/new-resource.css" type="text/css" />
-  <link rel="stylesheet" href="/styles/resource-layout.css" type="text/css" /">
+    <!--- External icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
 
-  <!-- External JS -->
-  <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/timeago.js/4.0.2/timeago.min.js" integrity="sha512-SVDh1zH5N9ChofSlNAK43lcNS7lWze6DTVx1JCXH1Tmno+0/1jMpdbR8YDgDUfcUrPp1xyE53G42GFrcM0CMVg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <body>
+    <!-- Top nav bar (fixed) -->
+    <nav>
+      <div class="logo">Resource Wall</div>
+      <div class="">Submit New Resource</div>
+      <div class="">Login/Logout</div>
+    </nav>
 
-  <!-- App JS -->
-  <script type="text/javascript" src="/scripts/app.js"></script>
+    <!-- Page-specific (main) content -->
+    <main class="container">
+      <section class="new-resource">
+        <form id="new-resource-form" action="/resources" method="POST">
+          <div>
+            <textarea
+              name="text"
+              id="resource-text"
+              placeholder="Submit a new resource"
+            ></textarea>
+          </div>
+          <div class="new-resource-footer">
+            <button class="btn" type="submit">Submit</button>
+            <!-- <output name="counter" class="counter" for="resource-text">140</output> -->
+          </div>
+          <div class="validation-error-msg"></div>
+        </form>
+      </section>
 
-  <!--- External icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-</head>
+      <section class="resource-container"></section>
 
-<body>
-
-  <!-- Top nav bar (fixed) -->
-  <nav>
-    <div class="logo">Resource Wall</div>
-    <div class="">Submit New Resource</div>
-    <div class="">Login/Logout</div>
-  </nav>
-
-      <!-- Page-specific (main) content -->
-  <main class="container">
-
-    <section class="new-resource">
-      <form id="new-resource-form" action='/resources' method='POST'>
-        <div>
-          <textarea name="text" id="resource-text" placeholder="Submit a new resource"></textarea>
-        </div>
-        <div class="new-resource-footer">
-          <button class="btn" type="submit">Submit</button>
-          <!-- <output name="counter" class="counter" for="resource-text">140</output> -->
-        </div>
-        <div class="validation-error-msg"></div>
-      </form>
-    </section>
-
-    <section class="resource-container"></section>
-
-    <a href="#" class="scroll-to-top">
-      <div class="tooltiptext">Return to top of page</div>
-      <span><i class="fas fa-angle-double-up"></i></span>
-    </a>
-
-  </main>
-
-</body>
-
+      <a href="#" class="scroll-to-top">
+        <div class="tooltiptext">Return to top of page</div>
+        <span><i class="fas fa-angle-double-up"></i></span>
+      </a>
+    </main>
+  </body>
 </html>

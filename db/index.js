@@ -35,7 +35,8 @@ const getLikedByUser = (userId) => {
 const getResourceComments = (resourceId) => {
   return pool
     .query(
-      `SELECT * FROM comments
+      `SELECT comment, comments.created_at, username FROM comments
+        INNER JOIN users ON comments.user_id = users.id
         WHERE resource_id = $1;
       `,
       [resourceId]

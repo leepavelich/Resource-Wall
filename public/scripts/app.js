@@ -11,26 +11,31 @@ $(() => {
 });
 
 const createResourceElement = (resource) => {
-  console.log(resource);
   const timeAgo = timeago.format(resource.created_at);
-
   const $resource = `
   <article class="resource">
     <header>
-      <!-- <image class="avatar" src=avatar></image> -->
+    <!-- <img class="avatar" alt="user avatar" src=${resource.avatar_photo_url}></img> -->
       <div class="title">${resource.title}</div>
-      <div class="handle"></div>
+      <div class="handle">${resource.username}</div>
     </header>
     <div class="resource-content">
       <p class="resource-content-text">${resource.description}</p>
-      <p class="resource-url"><a href="${resource.url}"></a></p>
+      <p class="resource-url"><a href="${resource.url}" target="_blank">${resource.url}</a></p>
+    </div>
+    <div class="comments-section">
+      <p>Comments</p>
+      <section id="resource-${resource.id}-comments"></section>
+      <form action="/api/resources/comments" method="POST">
+        <input type="text" name="comment">
+        <button type="button">Comment</button>
+      </form>
     </div>
     <footer>
-      <div class="days-ago">${timeAgo}</div>
+      <div class="days-ago">Created ${timeAgo}</div>
       <div class="icons">
-        <span><i class="fas fa-flag" id="flag"></i></span>
-        <span><i class="fas fa-retweet" id="retweet"></i></span>
-        <span><i class="fas fa-heart" id="like"></i></span>
+        <button><i class="fas fa-heart"></i></button>
+        <button id="comment-${resource.id}"><i class="fa-solid fa-comment"></i></button>
       </div>
     </footer>
   </article>
@@ -46,9 +51,38 @@ const escape = function (str) {
 };
 
 // load resources
-
 const loadResources = () => {
-  $.get("/api/resources", renderResources);
+  $.get("/api/resources", renderResources).then((data) => {
+    renderComments(data);
+  });
+};
+
+const renderComments = (data) => {
+  const resourceComments = data.resources;
+
+  for (const item of resourceComments) {
+    const resourceId = item.id;
+    $.get(`/api/resources/${resourceId}/comments`).then((res) => {
+      // toggle comments visibility
+      $(`#comment-${resourceId}`).on("click", () => {
+        $(`#resource-${resourceId}-comments`).parent().toggle();
+      });
+
+      // append fetched comments
+      const $commentsContainer = $(`#resource-${resourceId}-comments`);
+      $commentsContainer.empty();
+      for (const item of res.resources) {
+        $commentsContainer.append(
+          `
+          <div>
+            <p>${item.username}: ${item.comment}</p>
+            <p>${timeago.format(item.created_at)}</p>
+          </div>
+          `
+        );
+      }
+    });
+  }
 };
 
 const renderResources = (resourcesObj) => {
