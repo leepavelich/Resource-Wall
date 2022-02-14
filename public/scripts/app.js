@@ -12,17 +12,6 @@ $(() => {
   scrollToTopButton(); // bottom-right scroll-to-top button
 });
 
-const toggleNew = () => {
-  $("#new-btn").on("click", () => {
-    const $displayProp = $(".new-resource").css("display");
-    if ($displayProp === "none") {
-      $(".new-resource").slideDown();
-    } else {
-      $(".new-resource").slideUp();
-    }
-  });
-};
-
 // load resources
 const loadResources = () => {
   let resources = [];
@@ -31,9 +20,6 @@ const loadResources = () => {
 
     resources = data.resources;
   });
-
-  // const searchInput = document.querySelector("[data-search]");
-  // searchInput.addEventListener
 
   $("[data-search]").on("input", (e) => {
     const value = e.target.value;
@@ -66,6 +52,18 @@ const prepareSubmit = () => {
   $("#new-resource-owner-id").val(currentUserId);
   $(".new-resource-footer button").on("click", () => {
     loadResources();
+  });
+};
+
+// hide/show new resource submission field
+const toggleNew = () => {
+  $("#new-btn").on("click", () => {
+    const $displayProp = $(".new-resource").css("display");
+    if ($displayProp === "none") {
+      $(".new-resource").slideDown();
+    } else {
+      $(".new-resource").slideUp();
+    }
   });
 };
 
