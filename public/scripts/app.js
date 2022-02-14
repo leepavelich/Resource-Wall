@@ -25,7 +25,7 @@ const createResourceElement = (resource) => {
     </div>
     <div class="comments-section">
       <p>Comments</p>
-      <section id="resource-${resource.id}-comments" hidden></section>
+      <section id="resource-${resource.id}-comments"></section>
       <form action="/api/resources/comments" method="POST">
         <input type="text" name="comment">
         <button type="button">Comment</button>
@@ -65,7 +65,7 @@ const renderComments = (data) => {
     $.get(`/api/resources/${resourceId}/comments`).then((res) => {
       // toggle comments visibility
       $(`#comment-${resourceId}`).on("click", () => {
-        $(`#resource-${resourceId}-comments`).toggle("hide");
+        $(`#resource-${resourceId}-comments`).parent().toggle();
       });
 
       // append fetched comments

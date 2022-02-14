@@ -44,7 +44,7 @@ article.resource .resource-content {
 article.resource .resource-content-text {
   word-wrap: break-word;
   text-align: left;
-  margin-left: 0.5em;
+  // margin-left: 0.5em;
   margin-right: 0.5em;
 }
 
@@ -61,9 +61,9 @@ article.resource footer {
   font-size: 60%;
 }
 
-article.resource footer .days-ago {
-  padding-left: 1em;
-}
+// article.resource footer .days-ago {
+//   padding-left: 1em;
+// }
 
 article.resource footer .icons {
   display: flex;
@@ -85,4 +85,8 @@ article.resource footer .icons .fa-heart:hover {
 
 article.resource + article.resource {
   margin-top: 1em;
+}
+
+.comments-section {
+  display: none;
 }
