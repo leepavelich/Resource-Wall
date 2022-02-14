@@ -168,8 +168,6 @@ const scrollToTopButton = () => {
   });
 
   $scrollToTop.click(() => {
-    const $new = $("#new-tweet-form");
-    $new.slideDown("fast");
-    $("#tweet-text").focus();
+    $(".search-wrapper > input").focus();
   });
 };
