@@ -122,7 +122,7 @@ module.exports = (database) => {
 
     database
       .addResource(newResource)
-      .then((resources) => res.send({ resources }))
+      .then(() => res.redirect("/"))
       .catch((e) => {
         console.error(e);
         res.send(e);

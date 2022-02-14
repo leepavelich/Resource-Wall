@@ -12,7 +12,7 @@ VALUES (
     2,
     'Buy a Ring',
     'How to shop for jewelry',
-    'Wiki',
+    'Documentation',
     'Shopping',
     'https://lotr.fandom.com/wiki/One_Ring'
   ),

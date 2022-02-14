@@ -8,38 +8,44 @@
   margin-bottom: 1em;
   flex-direction: column;
   justify-content: center;
+  font-size: 1rem;
+
+  input,
+  textarea,
+  select {
+    margin-bottom: 0.5rem;
+  }
 }
 
-#resource-text {
-  border-bottom: 5px solid #545149;
-  padding: 10px;
-}
+// #resource-text {
+//   border-bottom: 5px solid #545149;
+//   padding: 10px;
+// }
 
-textarea {
-  background: transparent;
-  width: 100%;
-  resize: none;
-  border: 0px;
-  height: 3em;
-}
+// textarea {
+//   background: transparent;
+//   width: 100%;
+//   resize: none;
+//   border: 0px;
+//   height: 3em;
+// }
 
 .new-resource-footer {
   display: flex;
   font-family: $body-font;
-  margin-top: 0.25em;
-  flex-direction: row;
-  justify-content: space-between;
+  margin-top: 0.5rem;
 }
 
 .btn {
   border: none;
   padding: 5px 10px 5px 10px;
-  background-color: #4056A1;
+  margin-left: auto;
+  background-color: #4056a1;
   color: white;
 }
 
 .btn:hover {
-  background-color: #d09e41
+  background-color: #2444ac;
 }
 
 .btn:active {
@@ -48,7 +54,7 @@ textarea {
 
 .validation-error-msg {
   display: none;
-  color:red;
+  color: red;
   text-align: left;
   margin-top: 0.5em;
 }
