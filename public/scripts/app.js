@@ -18,8 +18,9 @@ const loadResources = () => {
   let resources = [];
   $.get("/api/resources", renderResources).then((data) => {
     loadComments(data);
+    loadRatings(data);
     renderLikes(data);
-
+    
     resources = data.resources;
   });
 
@@ -95,7 +96,19 @@ const createResourceElement = (resource) => {
       <div class="icons">
         <button id="like-${resource.id}""><i class="fas fa-heart"></i></button>
         <button id="comment-${resource.id}"><i class="fa-solid fa-comment"> 4</i></button>
-        <button><i class="fa-solid fa-star"> 3.7</i></button>
+        <div class="rate" id="rate-${resource.id}">
+          <p></p>
+          <i class="fa-solid fa-star star-1"></i>
+          <i class="fa-solid fa-star star-2"></i>
+          <i class="fa-solid fa-star star-3"></i>
+          <i class="fa-solid fa-star star-4"></i>
+          <i class="fa-solid fa-star star-5"></i>
+          <i class="fa-regular fa-star star-1"></i>
+          <i class="fa-regular fa-star star-2"></i>
+          <i class="fa-regular fa-star star-3"></i>
+          <i class="fa-regular fa-star star-4"></i>
+          <i class="fa-regular fa-star star-5"></i>
+        </div>
       </div>
     </footer>
   </article>

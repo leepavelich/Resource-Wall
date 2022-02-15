@@ -49,7 +49,7 @@ const getResourceComments = (resourceId) => {
 const getResourceRating = (resourceId) => {
   return pool
     .query(
-      `SELECT ROUND(AVG(rating), 1) AS average_rating
+      `SELECT ROUND(AVG(rating)) AS average_rating, COUNT(ratings) AS num_ratings
         FROM ratings
         WHERE resource_id = $1
         GROUP BY resource_id;

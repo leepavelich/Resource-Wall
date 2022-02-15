@@ -68,6 +68,7 @@ article.resource footer {
 article.resource footer .icons {
   display: flex;
   padding-right: 1em;
+  cursor: pointer;
 }
 
 article.resource footer .icons button {
@@ -86,6 +87,10 @@ article.resource footer .icons .fa-heart:hover {
 
 article.resource footer .icons .fa-comment:hover {
   color: aquamarine;
+}
+
+article.resource footer .icons .fa-star {
+  display: none;
 }
 
 article.resource footer .icons .fa-star:hover {
@@ -137,4 +142,10 @@ article.resource + article.resource {
       font-size: 0.8rem;
     }
   }
+}
+
+.rate p {
+  margin: 0;
+  font-weight: 700;
+  text-align: center;
 }
