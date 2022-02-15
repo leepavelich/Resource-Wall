@@ -94,6 +94,7 @@ const createResourceElement = (resource) => {
         <button><i class="fas fa-heart"> 3</i></button>
         <button id="comment-${resource.id}"><i class="fa-solid fa-comment"> 4</i></button>
         <div class="rate" id="rate-${resource.id}">
+          <p></p>
           <i class="fa-solid fa-star star-1"></i>
           <i class="fa-solid fa-star star-2"></i>
           <i class="fa-solid fa-star star-3"></i>
