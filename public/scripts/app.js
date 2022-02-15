@@ -11,6 +11,7 @@ $(() => {
   toggleNew();
   toggleLikes();
   scrollToTopButton(); // bottom-right scroll-to-top button
+  logout();
 });
 
 // load resources
@@ -20,7 +21,7 @@ const loadResources = () => {
     loadComments(data);
     loadRatings(data);
     renderLikes(data);
-    
+
     resources = data.resources;
   });
 
@@ -51,6 +52,9 @@ const renderResources = (resourcesObj) => {
 
 const prepareSubmit = () => {
   const currentUserId = document.cookie.split("=")[1];
+  if (currentUserId) {
+    $("#auth-btn").html("Logout");
+  }
 
   $("#new-resource-owner-id").val(currentUserId);
   $(".new-resource-footer button").on("click", () => {
