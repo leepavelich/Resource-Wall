@@ -13,12 +13,19 @@ const addRating = (id) => {
   for (let i = 1; i <= 5; i++) {
     $(`#rate-${id} .star-${i}`).on("click", () => {
       const newRating = i;
-      $.post(`/api/resources/rating`, {
+      // remove user-resource rating if exists
+      $.post(`/api/resources/rating/clear`, {
         user_id: currentUserId,
         resource_id: id,
-        rating: newRating,
       }).then(() => {
-        renderStars(id);
+        // insert new rating
+        $.post(`/api/resources/rating`, {
+          user_id: currentUserId,
+          resource_id: id,
+          rating: newRating,
+        }).then(() => {
+          renderStars(id);
+        });
       });
     });
   }
@@ -33,7 +40,7 @@ const renderStars = (id) => {
       avgRating = Number(data.resources.average_rating);
       numRatings = Number(data.resources.num_ratings);
     }
-    
+
     const $ratingsText = numRatings === 1 ? "rating" : "ratings";
     $(`#rate-${id} > p`).text(`${numRatings} ${$ratingsText}`);
 

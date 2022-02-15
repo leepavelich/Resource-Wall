@@ -61,6 +61,19 @@ module.exports = (database) => {
       });
   });
 
+  // 5.a clear rating if exists (always before inserting a new rating)
+  router.post("/rating/clear", (req, res) => {
+    const newRating = req.body;
+
+    database
+      .removeRating(newRating)
+      .then((resources) => res.send({ resources }))
+      .catch((e) => {
+        console.error(e);
+        res.send(e);
+      });
+  });
+
   // 5. add rating
   router.post("/rating", (req, res) => {
     const newRating = req.body;

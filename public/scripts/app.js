@@ -10,6 +10,7 @@ $(() => {
   prepareSubmit();
   toggleNew();
   toggleLikes();
+  toggleSubmissions();
   scrollToTopButton(); // bottom-right scroll-to-top button
   logout();
 });

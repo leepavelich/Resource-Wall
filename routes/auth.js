@@ -3,7 +3,7 @@ const router = express.Router();
 
 module.exports = () => {
   // may have to change to POST & redirect
-  router.get("/:id/login", (req, res) => {
+  router.get("/:id", (req, res) => {
     const { id } = req.params;
     res.cookie("user_id", id);
     res.redirect("/");
