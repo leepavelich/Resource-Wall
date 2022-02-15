@@ -37,10 +37,10 @@ const loadResources = () => {
         rsc.title.includes(value) ||
         rsc.description.includes(value) ||
         rsc.topic.includes(value);
-      if(!isVisible) {
-        $(`#${rsc.id}`).hide()
+      if(isVisible) {
+        $(`#${rsc.id}`).show()
       } else {
-        $(`#${rsc.id}`).show();
+        $(`#${rsc.id}`).hide();
       }
     });
   });
