@@ -9,6 +9,7 @@ $(() => {
   loadResources(); // initial page load
   prepareSubmit();
   toggleNew();
+  toggleLikes();
   scrollToTopButton(); // bottom-right scroll-to-top button
 });
 
@@ -18,7 +19,8 @@ const loadResources = () => {
   $.get("/api/resources", renderResources).then((data) => {
     loadComments(data);
     loadRatings(data);
-
+    renderLikes(data);
+    
     resources = data.resources;
   });
 
@@ -70,6 +72,7 @@ const toggleNew = () => {
 
 const createResourceElement = (resource) => {
   const timeAgo = timeago.format(resource.created_at);
+
   const $resource = `
   <article class="resource" id="${resource.id}">
     <header>
@@ -91,7 +94,7 @@ const createResourceElement = (resource) => {
     <footer>
       <div class="days-ago">Created ${timeAgo}</div>
       <div class="icons">
-        <button><i class="fas fa-heart"> 3</i></button>
+        <button id="like-${resource.id}""><i class="fas fa-heart"></i></button>
         <button id="comment-${resource.id}"><i class="fa-solid fa-comment"> 4</i></button>
         <div class="rate" id="rate-${resource.id}">
           <p></p>
