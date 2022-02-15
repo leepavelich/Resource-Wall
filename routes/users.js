@@ -23,7 +23,17 @@ module.exports = (database) => {
   });
 
   // get info from a single user
-  // /:id
+  router.get("/:id", (req, res) => {
+    const { id } = req.params;
+
+    database
+      .getUserById(id)
+      .then((resources) => res.send({ resources }))
+      .catch((e) => {
+        console.error(e);
+        res.send(e);
+      });
+  });
 
   return router;
 };
