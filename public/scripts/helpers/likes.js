@@ -8,19 +8,18 @@ const renderLikes = (data) => {
     $.get(`/api/resources/${resourceId}/likes`)
       .then((response) => {
         if (response.resources.some(e => e.user_id === currentUserId)) {
-          likesToggle(resourceId);
+          likesSet(resourceId);
         }
       });
   }
 };
 
 // toggle like highlighting
-const likesToggle = (id) => {
-  // $(`#like-${id}`).css("color", LIKED_COLOUR)
+const likesSet = (id) => {
   $(`#like-${id}`).addClass('highlighted');
 };
 
-const toggleLikes = () => {
+const filterLikes = () => {
   $("#likes-btn").click(() => {
     $(".resource").each(function() {
       if (!$(this).find('[id^="like"]').hasClass('highlighted')) {
@@ -28,4 +27,16 @@ const toggleLikes = () => {
       };
     })
   })
+}
+
+const toggleLikes = () => {
+  $.get("/api/resources", renderResources).then((data) => {
+    for (let i = 1; i <= data.resources.length; i++) {
+      $(`#like-${i}`).on("click", function() {
+        $(this).hasClass('highlighted')
+          ? $(this).removeClass('highlighted')
+          : $(this).addClass('highlighted');
+      })
+    }
+  });
 }

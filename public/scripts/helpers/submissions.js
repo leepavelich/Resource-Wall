@@ -1,4 +1,4 @@
-const toggleSubmissions = () => {
+const filterSubmissions = () => {
   const currentUserId = Number(document.cookie.split("=")[1]);
   $.get(`/api/users/${currentUserId}/`)
     .then((data) => {
