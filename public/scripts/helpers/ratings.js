@@ -2,6 +2,7 @@ const loadRatings = (data) => {
   const { resources } = data;
   resources.forEach((item) => {
     const resourceId = item.id;
+    addRating(resourceId);
     $.get(`/api/resources/${resourceId}/rating`).then((data) => {
       let avgRating = "0";
       let numRatings = "0";
@@ -9,7 +10,7 @@ const loadRatings = (data) => {
         avgRating = data.resources.average_rating;
         numRatings = data.resources.num_ratings;
       }
-      $(`#rate-${resourceId}`).prepend(`<p>${numRatings} ratings</p>`);
+      $(`#rate-${resourceId}`).prepend(`<p>ratings: ${numRatings}</p>`);
       console.log(resourceId, avgRating);
       switch (avgRating) {
         case "0":
@@ -57,4 +58,19 @@ const loadRatings = (data) => {
       }
     });
   });
+};
+
+const addRating = (id) => {
+  const currentUserId = document.cookie.split("=")[1];
+
+  for (let i = 1; i <= 5; i++) {
+    $(`#rate-${id} .star-${i}`).on("click", () => {
+      const newRating = i;
+      $.post(`/api/resources/rating`, {
+        user_id: currentUserId,
+        resource_id: id,
+        rating: newRating,
+      });
+    });
+  }
 };
