@@ -98,16 +98,18 @@ const createResourceElement = (resource) => {
         <button id="comment-${resource.id}"><i class="fa-solid fa-comment"> 4</i></button>
         <div class="rate" id="rate-${resource.id}">
           <p></p>
-          <i class="fa-solid fa-star star-1"></i>
-          <i class="fa-solid fa-star star-2"></i>
-          <i class="fa-solid fa-star star-3"></i>
-          <i class="fa-solid fa-star star-4"></i>
-          <i class="fa-solid fa-star star-5"></i>
-          <i class="fa-regular fa-star star-1"></i>
-          <i class="fa-regular fa-star star-2"></i>
-          <i class="fa-regular fa-star star-3"></i>
-          <i class="fa-regular fa-star star-4"></i>
-          <i class="fa-regular fa-star star-5"></i>
+          <div>
+            <i class="fa-solid fa-star star-1"></i>
+            <i class="fa-solid fa-star star-2"></i>
+            <i class="fa-solid fa-star star-3"></i>
+            <i class="fa-solid fa-star star-4"></i>
+            <i class="fa-solid fa-star star-5"></i>
+            <i class="fa-regular fa-star star-1"></i>
+            <i class="fa-regular fa-star star-2"></i>
+            <i class="fa-regular fa-star star-3"></i>
+            <i class="fa-regular fa-star star-4"></i>
+            <i class="fa-regular fa-star star-5"></i>
+          </div>
         </div>
       </div>
       </footer>
