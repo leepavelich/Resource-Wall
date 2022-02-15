@@ -30,13 +30,23 @@ const filterLikes = () => {
 }
 
 const toggleLikes = () => {
+  const currentUserId = Number(document.cookie.split("=")[1]);
+
   $.get("/api/resources", renderResources).then((data) => {
     for (let i = 1; i <= data.resources.length; i++) {
       $(`#like-${i}`).on("click", function() {
         if($(this).hasClass('highlighted')) {
           $(this).removeClass('highlighted')
+          $.post(`/api/resources/unlike`, {
+            user_id: currentUserId,
+            resource_id: i,
+          })
         } else {
           $(this).addClass('highlighted');
+          $.post(`/api/resources/likes`, {
+            user_id: currentUserId,
+            resource_id: i,
+          })
         }
       })
     }
