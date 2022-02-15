@@ -9,6 +9,7 @@ $(() => {
   loadResources(); // initial page load
   prepareSubmit();
   toggleNew();
+  toggleLikes();
   scrollToTopButton(); // bottom-right scroll-to-top button
 });
 
@@ -18,7 +19,8 @@ const loadResources = () => {
   $.get("/api/resources", renderResources).then((data) => {
     loadComments(data);
     loadRatings(data);
-
+    renderLikes(data);
+    
     resources = data.resources;
   });
 
@@ -70,6 +72,7 @@ const toggleNew = () => {
 
 const createResourceElement = (resource) => {
   const timeAgo = timeago.format(resource.created_at);
+
   const $resource = `
   <article class="resource" id="${resource.id}">
     <header>
@@ -83,15 +86,15 @@ const createResourceElement = (resource) => {
     <div class="comments-section">
       <p>Comments</p>
       <section id="resource-${resource.id}-comments"></section>
-      <form action="/api/resources/comments" method="POST">
-        <input type="text" name="comment">
-        <button type="button">Comment</button>
+      <form>
+        <input type="text" id="${resource.id}-comment">
+        <button id="${resource.id}-comment-btn" class="btn btn-lg btn-primary" type="button">Comment</button>
       </form>
     </div>
     <footer>
       <div class="days-ago">Created ${timeAgo}</div>
       <div class="icons">
-        <button><i class="fas fa-heart"> 3</i></button>
+        <button id="like-${resource.id}""><i class="fas fa-heart"></i></button>
         <button id="comment-${resource.id}"><i class="fa-solid fa-comment"> 4</i></button>
         <div class="rate" id="rate-${resource.id}">
           <p></p>
@@ -109,7 +112,7 @@ const createResourceElement = (resource) => {
           </div>
         </div>
       </div>
-    </footer>
+      </footer>
   </article>
   `;
   return $resource;

@@ -1,9 +1,7 @@
 const loadRatings = (data) => {
-  const { resources } = data;
-  resources.forEach((item) => {
-    const resourceId = item.id;
-    addRating(resourceId);
-    renderStars(resourceId);
+  data.resources.forEach((rating) => {
+    addRating(rating.id);
+    renderStars(rating.id);
   });
 };
 
@@ -35,7 +33,7 @@ const renderStars = (id) => {
       avgRating = Number(data.resources.average_rating);
       numRatings = Number(data.resources.num_ratings);
     }
-
+    
     const $ratingsText = numRatings === 1 ? "rating" : "ratings";
     $(`#rate-${id} > p`).text(`${numRatings} ${$ratingsText}`);
 
