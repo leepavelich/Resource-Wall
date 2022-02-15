@@ -12,6 +12,7 @@ $(() => {
   toggleLikes();
   toggleSubmissions();
   scrollToTopButton(); // bottom-right scroll-to-top button
+  logout();
 });
 
 // load resources
@@ -52,6 +53,11 @@ const renderResources = (resourcesObj) => {
 
 const prepareSubmit = () => {
   const currentUserId = document.cookie.split("=")[1];
+  if (currentUserId) {
+    $("#auth-btn").html("Logout");
+  } else {
+    $(".show-if-auth").hide();
+  }
 
   $("#new-resource-owner-id").val(currentUserId);
   $(".new-resource-footer button").on("click", () => {
