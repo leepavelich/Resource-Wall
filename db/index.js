@@ -96,16 +96,37 @@ const addComment = (newComment) => {
   );
 };
 
-// 5.
-const addRating = (newRating) => {
-  const { user_id, resource_id, rating } = newRating;
+// 5.a
+const removeRating = (newRating) => {
+  const { user_id, resource_id } = newRating;
 
   return (
     pool
       .query(
-        `INSERT INTO ratings (user_id, resource_id, rating)
-        VALUES ($1, $2, $3)
-        RETURNING *;
+        `
+        DELETE FROM ratings
+          WHERE user_id = $1 AND resource_id = $2;
+      `,
+        [user_id, resource_id]
+      )
+      // returns new rating - this may be unnecessary
+      .then((result) => result.rows[0])
+      .catch((err) => err.message)
+  );
+};
+
+// 5.
+const addRating = (newRating) => {
+  const { user_id, resource_id, rating } = newRating;
+
+  // update if exists, else insert
+  return (
+    pool
+      .query(
+        `
+        INSERT INTO ratings (user_id, resource_id, rating)
+          VALUES ($1, $2, $3)
+          RETURNING *;
       `,
         [user_id, resource_id, rating]
       )
@@ -202,4 +223,5 @@ module.exports = {
   addLike,
   removeLike,
   addRating,
+  removeRating,
 };
