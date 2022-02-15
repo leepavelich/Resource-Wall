@@ -14,17 +14,16 @@ const renderLikes = (data) => {
   }
 };
 
-const LIKED_COLOUR = "rgb(255, 0, 0)";
-
 // toggle like highlighting
 const likesToggle = (id) => {
-  $(`#like-${id}`).css("color", LIKED_COLOUR)
+  // $(`#like-${id}`).css("color", LIKED_COLOUR)
+  $(`#like-${id}`).addClass('highlighted');
 };
 
 const toggleLikes = () => {
   $("#likes-btn").click(() => {
     $(".resource").each(function() {
-      if ($(this).find('[id^="like"]').css("color") !== LIKED_COLOUR) {
+      if (!$(this).find('[id^="like"]').hasClass('highlighted')) {
         $(this).toggle();
       };
     })
