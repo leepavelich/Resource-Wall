@@ -23,16 +23,9 @@ const likesToggle = (id) => {
 const toggleLikes = () => {
   $("#likes-btn").click(() => {
     $(".resource").each(function() {
-      // if ($(this).attr('[id^="like"]').css("color") === "red") {
-      //   console.log(j);
-      // }
       if ($(this).find('[id^="like"]').css("color") !== LIKED_COLOUR) {
         $(this).toggle();
       };
-      // console.log('test');
-      // console.log($('[id^="like"]', this))
-      // console.log(obj);
-      // $(this).toggle()
     })
   })
 }
