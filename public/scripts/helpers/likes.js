@@ -33,9 +33,11 @@ const toggleLikes = () => {
   $.get("/api/resources", renderResources).then((data) => {
     for (let i = 1; i <= data.resources.length; i++) {
       $(`#like-${i}`).on("click", function() {
-        $(this).hasClass('highlighted')
-          ? $(this).removeClass('highlighted')
-          : $(this).addClass('highlighted');
+        if($(this).hasClass('highlighted')) {
+          $(this).removeClass('highlighted')
+        } else {
+          $(this).addClass('highlighted');
+        }
       })
     }
   });
