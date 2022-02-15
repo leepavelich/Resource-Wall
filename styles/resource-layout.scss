@@ -89,12 +89,20 @@ article.resource footer .icons .fa-comment:hover {
   color: aquamarine;
 }
 
-article.resource footer .icons .fa-star {
-  display: none;
+.rate > div {
+  display: flex;
 }
 
-article.resource footer .icons .fa-star:hover {
-  color: gold;
+.rate p {
+  margin: 0;
+  font-weight: 700;
+  text-align: center;
+}
+
+article.resource footer .icons .fa-star {
+  display: none;
+  color: goldenrod;
+  padding: 0.2rem;
 }
 
 article.resource + article.resource {
@@ -142,10 +150,4 @@ article.resource + article.resource {
       font-size: 0.8rem;
     }
   }
-}
-
-.rate p {
-  margin: 0;
-  font-weight: 700;
-  text-align: center;
 }
