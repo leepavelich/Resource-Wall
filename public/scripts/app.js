@@ -9,6 +9,7 @@ $(() => {
   loadResources(); // initial page load
   prepareSubmit();
   toggleNew();
+  toggleLikes();
   scrollToTopButton(); // bottom-right scroll-to-top button
 });
 
