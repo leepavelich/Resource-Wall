@@ -227,6 +227,7 @@ const addResource = (newResource) => {
 module.exports = {
   getAllResources,
   getLikedByUser,
+  getUserById,
   getResourceComments,
   getResourceRating,
   getLikes,
