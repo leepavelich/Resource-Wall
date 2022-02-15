@@ -17,22 +17,23 @@ article.resource:hover {
 
 article.resource header {
   display: flex;
-  justify-content: space-between;
   align-items: baseline;
 }
 
-// article.resource header .avatar {
-//   width: 30px;
-//   margin-left: auto;
-//   margin-right: 0.5em;
-// }
-
 article.resource header .handle {
-  // display: flex;
-  // justify-content: flex-end;
-  // flex-grow: 1;
   font-size: 1rem;
   color: #babace;
+  margin-left: auto;
+}
+
+article.resource header .delete-resource {
+  color: red;
+  margin-left: 1rem;
+}
+
+article.resource header .delete-resource:hover {
+  color: maroon;
+  cursor: pointer;
 }
 
 article.resource .resource-content {

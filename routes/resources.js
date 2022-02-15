@@ -115,11 +115,6 @@ module.exports = (database) => {
 
   // 8. retrive all resources
   router.get("/", (req, res) => {
-    // const userId = req.session.userId;
-    // if (!userId) {
-    //   res.error("Not logged in");
-    //   return;
-    // } PROBABLY WILL DELETE
     database
       .getAllResources()
       .then((resources) => res.send({ resources }))
@@ -136,6 +131,19 @@ module.exports = (database) => {
     database
       .addResource(newResource)
       .then(() => res.redirect("/"))
+      .catch((e) => {
+        console.error(e);
+        res.send(e);
+      });
+  });
+
+  // 10. soft delete a resource
+  router.post("/remove", (req, res) => {
+    const resourceId = req.body;
+
+    database
+      .removeResource(resourceId)
+      .then((resources) => res.send({ resources }))
       .catch((e) => {
         console.error(e);
         res.send(e);

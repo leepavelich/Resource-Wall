@@ -190,7 +190,7 @@ const removeLike = (like) => {
 const getAllResources = () => {
   return pool
     .query(
-      `SELECT resources.id, title, description, type, topic, url, resources.created_at, username
+      `SELECT resources.id, users.id AS user_id, title, description, type, topic, url, resources.created_at, username, resources.is_deleted
         FROM resources
         INNER JOIN users ON owner_id = users.id;
       `
@@ -218,6 +218,24 @@ const addResource = (newResource) => {
   );
 };
 
+const removeResource = (resource) => {
+  const { id } = resource;
+
+  return (
+    pool
+      .query(
+        `UPDATE resources
+        SET is_deleted = true
+        WHERE id = $1;
+      `,
+        [id]
+      )
+      // returns newly created resource - this may be unnecessary
+      .then((result) => result.rows[0])
+      .catch((err) => err.message)
+  );
+};
+
 // (optional for now)
 // addUser
 // updateRating
@@ -237,4 +255,5 @@ module.exports = {
   removeLike,
   addRating,
   removeRating,
+  removeResource,
 };

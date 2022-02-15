@@ -37,8 +37,8 @@ const loadResources = () => {
         rsc.title.includes(value) ||
         rsc.description.includes(value) ||
         rsc.topic.includes(value);
-      if(isVisible) {
-        $(`#${rsc.id}`).show()
+      if (isVisible) {
+        $(`#${rsc.id}`).show();
       } else {
         $(`#${rsc.id}`).hide();
       }
@@ -51,8 +51,11 @@ const renderResources = (resourcesObj) => {
   $resourceContainer.empty();
 
   resourcesObj.resources.forEach((resource) => {
-    const $resource = createResourceElement(resource);
-    $resourceContainer.prepend($resource);
+    if (!resource.is_deleted) {
+      const $resource = createResourceElement(resource);
+      $resourceContainer.prepend($resource);
+      addDeleteListener(resource);
+    }
   });
 };
 
@@ -84,11 +87,18 @@ const toggleNew = () => {
 
 const createResourceElement = (resource) => {
   const timeAgo = timeago.format(resource.created_at);
+  const currentUserId = document.cookie.split("=")[1];
 
+  let deleteBtn = "";
+  if (resource.user_id == currentUserId) {
+    deleteBtn = `
+    <i class="fa-solid fa-trash-can delete-resource" id="delete-resource-${resource.id}" ></i>`;
+  }
   const $resource = `
   <article class="resource" id="${resource.id}">
     <header>
       <div class="title">${resource.title}</div>
+      ${deleteBtn}
       <div class="handle">${resource.username}</div>
     </header>
     <div class="resource-content">
@@ -127,6 +137,7 @@ const createResourceElement = (resource) => {
       </footer>
   </article>
   `;
+
   return $resource;
 };
 
