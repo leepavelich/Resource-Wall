@@ -83,9 +83,9 @@ const createResourceElement = (resource) => {
     <div class="comments-section">
       <p>Comments</p>
       <section id="resource-${resource.id}-comments"></section>
-      <form action="/api/resources/comments" method="POST">
-        <input type="text" name="comment">
-        <button type="button">Comment</button>
+      <form>
+        <input type="text" id="${resource.id}-comment">
+        <button id="${resource.id}-comment-btn" class="btn btn-lg btn-primary" type="button">Comment</button>
       </form>
     </div>
     <footer>
@@ -107,7 +107,7 @@ const createResourceElement = (resource) => {
           <i class="fa-regular fa-star star-5"></i>
         </div>
       </div>
-    </footer>
+      </footer>
   </article>
   `;
   return $resource;

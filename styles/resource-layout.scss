@@ -144,6 +144,16 @@ article.resource + article.resource {
   }
 }
 
+.comments-section form {
+  display: flex;
+  align-items: baseline;
+
+  input {
+    flex-grow: 1;
+    margin: 0 1rem 1rem 0;
+  }
+}
+
 .rate p {
   margin: 0;
   font-weight: 700;
