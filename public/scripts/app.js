@@ -54,6 +54,8 @@ const prepareSubmit = () => {
   const currentUserId = document.cookie.split("=")[1];
   if (currentUserId) {
     $("#auth-btn").html("Logout");
+  } else {
+    $(".show-if-auth").hide();
   }
 
   $("#new-resource-owner-id").val(currentUserId);
