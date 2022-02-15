@@ -30,6 +30,18 @@ const getLikedByUser = (userId) => {
     .catch((err) => err.message);
 };
 
+const getUserById = (userId) => {
+  return pool
+    .query(
+      `SELECT * FROM users
+        WHERE id = $1;
+      `,
+      [userId]
+    )
+    .then((result) => result.rows[0])
+    .catch((err) => err.message);
+};
+
 /** RESOURCES ROUTES */
 // 1.
 const getResourceComments = (resourceId) => {

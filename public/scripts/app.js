@@ -10,6 +10,7 @@ $(() => {
   prepareSubmit();
   toggleNew();
   toggleLikes();
+  toggleSubmissions();
   scrollToTopButton(); // bottom-right scroll-to-top button
 });
 
@@ -20,7 +21,7 @@ const loadResources = () => {
     loadComments(data);
     loadRatings(data);
     renderLikes(data);
-    
+
     resources = data.resources;
   });
 
