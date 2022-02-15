@@ -10,7 +10,8 @@ $(() => {
   prepareSubmit();
   toggleNew();
   toggleLikes();
-  toggleSubmissions();
+  filterLikes();
+  filterSubmissions();
   scrollToTopButton(); // bottom-right scroll-to-top button
   logout();
 });
@@ -36,7 +37,11 @@ const loadResources = () => {
         rsc.title.includes(value) ||
         rsc.description.includes(value) ||
         rsc.topic.includes(value);
-      !isVisible ? $(`#${rsc.id}`).hide() : $(`#${rsc.id}`).show();
+      if(isVisible) {
+        $(`#${rsc.id}`).show()
+      } else {
+        $(`#${rsc.id}`).hide();
+      }
     });
   });
 };

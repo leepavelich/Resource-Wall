@@ -77,6 +77,10 @@ article.resource footer .icons button {
   color: #4b5499;
 }
 
+article.resource footer .icons button.highlighted {
+  color: red;
+}
+
 article.resource footer .icons span {
   width: 2em;
 }
