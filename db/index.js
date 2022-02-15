@@ -65,7 +65,7 @@ const getLikes = (resourceId) => {
   return (
     pool
       .query(
-        `SELECT username FROM users
+        `SELECT username, user_id FROM users
           INNER JOIN likes ON users.id = likes.user_id
           WHERE likes.resource_id = $1;
       `,
