@@ -105,7 +105,7 @@ const createResourceElement = (resource) => {
   let deleteBtn = "";
   if (resource.user_id == currentUserId) {
     deleteBtn = `
-    <i class="fa-solid fa-trash-can delete-resource" id="delete-resource-${resource.id}" ></i>`;
+    <i class="fa-regular fa-trash-can delete-resource" id="delete-resource-${resource.id}" ></i>`;
   }
   const $resource = `
   <article class="resource card" id="${resource.id}">
@@ -123,14 +123,14 @@ const createResourceElement = (resource) => {
       <section id="resource-${resource.id}-comments"></section>
       <form>
         <input type="text" id="${resource.id}-comment">
-        <button id="${resource.id}-comment-btn" class="btn btn-lg btn-primary" type="button">Comment</button>
+        <button id="${resource.id}-comment-btn" class="btn btn-lg" type="button">Comment</button>
       </form>
     </div>
     <footer>
       <div class="days-ago">Created ${timeAgo}</div>
       <div class="icons">
-        <button id="like-${resource.id}""><i class="fas fa-heart"></i></button>
-        <button id="comment-${resource.id}"><i class="fa-solid fa-comment"></i></button>
+        <button id="like-${resource.id}"><i id="like-${resource.id}" class="fa-solid fa-heart"></i></button>
+        <button id="comment-${resource.id}"><i id="comment-${resource.id}" class="fa-regular fa-comment"></i></button>
         <div class="rate" id="rate-${resource.id}">
           <p></p>
           <div>

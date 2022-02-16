@@ -11,6 +11,8 @@ const loadComments = (data) => {
 // toggle comments visibility
 const addDisplayToggle = (id) => {
   $(`#comment-${id}`).on("click", () => {
+    console.log("click");
+
     $(`#resource-${id}-comments`).parent().toggle();
   });
 };
@@ -27,8 +29,7 @@ const renderComments = (id) => {
       addDeleteCommentListener(comment);
     });
 
-    $(`#comment-${id}`)
-      .children().html(`&nbsp; ${data.resources.length}`)
+    $(`#comment-${id}`).children().html(`&nbsp; ${data.resources.length}`);
   });
 };
 
@@ -46,7 +47,7 @@ const createCommentElement = (data) => {
   let deleteBtn = "";
   if (user_id == currentUserId) {
     deleteBtn = `
-    <i class="fa-solid fa-trash-can delete-comment" id="delete-comment-${comment_id}" ></i>`;
+    <i class="fa-regular fa-circle-xmark delete-comment" id="delete-comment-${comment_id}" ></i>`;
   }
 
   const $comment = `
