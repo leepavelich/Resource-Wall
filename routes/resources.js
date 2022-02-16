@@ -48,7 +48,20 @@ module.exports = (database) => {
       });
   });
 
-  // 4. add new comment
+  // 4.a remove comment
+  router.post("/comments/remove", (req, res) => {
+    const { id } = req.body;
+
+    database
+      .removeComment(id)
+      .then((resources) => res.send({ resources }))
+      .catch((e) => {
+        console.error(e);
+        res.send(e);
+      });
+  });
+
+  // 4.b add new comment
   router.post("/comments", (req, res) => {
     const newComment = req.body;
 
@@ -74,7 +87,7 @@ module.exports = (database) => {
       });
   });
 
-  // 5. add rating
+  // 5.b add rating
   router.post("/rating", (req, res) => {
     const newRating = req.body;
 
@@ -124,7 +137,7 @@ module.exports = (database) => {
       });
   });
 
-  // 9. add new resource
+  // 9.a add new resource
   router.post("/", (req, res) => {
     const newResource = req.body;
 
@@ -137,7 +150,7 @@ module.exports = (database) => {
       });
   });
 
-  // 10. soft delete a resource
+  // 9.b soft delete a resource
   router.post("/remove", (req, res) => {
     const resourceId = req.body;
 

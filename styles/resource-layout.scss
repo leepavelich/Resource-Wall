@@ -133,10 +133,21 @@ article.resource + article.resource {
   .user-info {
     display: flex;
     align-items: center;
-  }
 
-  .user-info p {
-    margin-left: 0.5rem;
+    p {
+      margin-left: 0.5rem;
+    }
+
+    i {
+      color: red;
+      margin-left: auto;
+      margin-right: 0.5rem;
+    }
+
+    i:hover {
+      color: maroon;
+      cursor: pointer;
+    }
   }
 
   img {

@@ -98,8 +98,8 @@ const createResourceElement = (resource) => {
   <article class="resource" id="${resource.id}">
     <header>
       <div class="title">${resource.title}</div>
-      ${deleteBtn}
       <div class="handle">${resource.username}</div>
+      ${deleteBtn}
     </header>
     <div class="resource-content">
       <p class="resource-content-text">${resource.description}</p>

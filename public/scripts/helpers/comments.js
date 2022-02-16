@@ -24,18 +24,34 @@ const renderComments = (id) => {
     data.resources.forEach((comment) => {
       const $comment = createCommentElement(comment);
       $commentsContainer.append($comment);
+      addDeleteCommentListener(comment);
     });
   });
 };
 
 const createCommentElement = (data) => {
-  const { username, comment, created_at, avatar_photo_url } = data;
+  const {
+    username,
+    comment,
+    created_at,
+    avatar_photo_url,
+    comment_id,
+    user_id,
+  } = data;
+
+  const currentUserId = document.cookie.split("=")[1];
+  let deleteBtn = "";
+  if (user_id == currentUserId) {
+    deleteBtn = `
+    <i class="fa-solid fa-trash-can delete-comment" id="delete-comment-${comment_id}" ></i>`;
+  }
 
   const $comment = `
     <div class="comment-container">
       <div class="user-info">
         <img class="avatar" alt="user avatar" src=${avatar_photo_url}></img>
         <p>@${username}</p>
+        ${deleteBtn}
       </div>
       <div class="comment-content">
         <p>${comment}</p>
