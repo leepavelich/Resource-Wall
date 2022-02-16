@@ -27,8 +27,7 @@ const renderComments = (id) => {
       addDeleteCommentListener(comment);
     });
 
-    $(`#comment-${id}`)
-      .children().html(`&nbsp; ${data.resources.length}`)
+    $(`#comment-${id}`).children().html(`&nbsp; ${data.resources.length}`);
   });
 };
 
@@ -69,7 +68,9 @@ const addComment = (id) => {
   $(`#${id}-comment-btn`).on("click", () => {
     const currentUserId = document.cookie.split("=")[1];
     const $comment = $(`#${id}-comment`).val();
-
+    if (!$comment) {
+      return;
+    }
     $.post("/api/resources/comments", {
       user_id: currentUserId,
       resource_id: id,

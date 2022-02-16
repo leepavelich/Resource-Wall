@@ -81,7 +81,7 @@ const prepareSubmit = () => {
   }
 
   $("#new-resource-owner-id").val(currentUserId);
-  $(".new-resource-footer button").on("click", () => {
+  $(".new-resource-footer button").on("click", (e) => {
     loadResources();
   });
 };
