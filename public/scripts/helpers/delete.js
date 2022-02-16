@@ -15,7 +15,7 @@ const addDeleteListener = (resource) => {
 const addDeleteCommentListener = (comment) => {
   $(`#delete-comment-${comment.comment_id}`).on("click", function () {
     const currentUserId = Number(document.cookie.split("=")[1]);
-    const resourceOwnerId = Number(resource.user_id);
+    const resourceOwnerId = Number(comment.user_id);
 
     if (currentUserId === resourceOwnerId) {
       const { comment_id } = comment;
