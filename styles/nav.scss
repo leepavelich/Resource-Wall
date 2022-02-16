@@ -1,7 +1,7 @@
 @import "variables";
 
 nav {
-  height: 10vh;
+  height: 4rem;
   width: 100%;
   background-color: rgb(78, 126, 128);
   color: #ffffff;
@@ -11,6 +11,7 @@ nav {
   align-items: baseline;
   position: fixed;
   font-size: smaller;
+  z-index: 999;
 
   .btn {
     margin-left: 1rem;

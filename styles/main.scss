@@ -21,22 +21,39 @@ main {
   // display: flex;
   // flex-direction: column;
   // align-items: center;
-  margin: 0 auto 1rem;
+  margin: 0 auto 1.5rem;
   width: 60%;
   max-width: $max-width;
   min-width: $min-width;
-  margin-top: 5vh;
+  margin-top: 4vh;
   position: sticky;
-  top: 12vh;
+  top: 4.5rem;
   filter: brightness(1.2);
+  z-index: 999;
 }
 
 .search-wrapper input[type="search"] {
   all: unset;
   width: 100%;
-  padding-left: 1em;
+  height: 3rem;
+  font-size: larger;
+  padding-left: 0.5em;
   border-radius: 10px;
   background-color: linen;
+  box-shadow: 2px 2px 2px #555;
+}
+
+.fa-magnifying-glass {
+  position: absolute;
+  right: 0;
+  top: 0;
+  margin-top: 0.8rem;
+  color: #4e7e80;
+}
+
+.fa-magnifying-glass:hover {
+  cursor: pointer;
+  color: #385b5c;
 }
 
 .container {

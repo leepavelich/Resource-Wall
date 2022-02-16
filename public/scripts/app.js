@@ -108,7 +108,7 @@ const createResourceElement = (resource) => {
     <i class="fa-solid fa-trash-can delete-resource" id="delete-resource-${resource.id}" ></i>`;
   }
   const $resource = `
-  <article class="resource" id="${resource.id}">
+  <article class="resource card" id="${resource.id}">
     <header>
       <div class="title">${resource.title}</div>
       <div class="handle">@${resource.username}</div>
