@@ -127,7 +127,7 @@ const createResourceElement = (resource) => {
       <div class="days-ago">Created ${timeAgo}</div>
       <div class="icons">
         <button id="like-${resource.id}"><i id="like-${resource.id}" class="fa-solid fa-heart"></i></button>
-        <button id="comments-toggle-${resource.id}"><i id="comment-${resource.id}" class="fa-regular fa-comment"></i></button>
+        <button id="comment-btn-${resource.id}"><i id="comments-toggle-${resource.id}" class="fa-regular fa-comment"></i></button>
         <div class="rate" id="rate-${resource.id}">
           <p></p>
           <div>
