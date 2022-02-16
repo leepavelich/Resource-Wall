@@ -7,15 +7,23 @@
 
 $(() => {
   loadResources(); // initial page load
-  prepareSubmit();
-  toggleNew();
-  toggleLikes();
-  filterLikes();
-  filterSubmissions();
+  reloadResources(); // reload home page on logo click
+  prepareSubmit(); // prepare submit new form feature
+  toggleNew(); // toggle form for submitting new resource
+  toggleLikes(); // toggle liking/unliking a resource
+  filterLikes(); // filter displayed resources via likes
+  filterSubmissions(); // filter displayed resources via submitted
   scrollToTopButton(); // bottom-right scroll-to-top button
-  showCurrentUser();
-  logout();
+  showCurrentUser(); // show currently logged in username in nav
+  logout(); // log user out
 });
+
+// clicking logo will re-load all resources (escape from likes/submissions)
+const reloadResources = () => {
+  $("nav .logo").on("click", () => {
+    loadResources();
+  });
+};
 
 // load resources
 const loadResources = () => {
