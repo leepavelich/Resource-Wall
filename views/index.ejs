@@ -81,79 +81,70 @@
           placeholder="Search resources..."
           data-search
         />
+        <i class="fa-solid fa-magnifying-glass"></i>
       </div>
 
       <section class="new-resource">
-        <form action="/api/resources" method="POST">
-          <div class="form-group">
+        <form action="/api/resources" method="POST" class="card">
+          <div class="form-group card-body">
+            <h3>Submit a New Resource</h3>
+            <input
+              type="number"
+              id="new-resource-owner-id"
+              name="owner_id"
+              hidden
+            />
             <div>
-              <input
-                type="number"
-                id="new-resource-owner-id"
-                name="owner_id"
-                hidden
-              />
-              <label for="resource-title">Title</label>
-              <input
-                name="title"
-                type="text"
-                class="form-control"
-                id="resource-title"
-              />
-              <label for="resource-description">Description</label>
-              <textarea
-                name="description"
-                class="form-control"
-                id="resource-description"
-                rows="2"
-              ></textarea>
-              <label for="resource-type">Type</label>
-              <select class="form-control" id="resource-type" name="type">
-                <option value="Blog">Blog</option>
-                <option value="Video">Video</option>
-                <option value="Documentation">Documentation</option>
-                <option value="Other">Other</option>
-              </select>
-              <label for="resource-topic">Topic</label>
-              <input
-                name="topic"
-                type="text"
-                class="form-control"
-                id="resource-topic"
-              />
-              <label for="resource-url">URL</label>
-              <input
-                name="url"
-                type="text"
-                class="form-control"
-                id="resource-url"
-                placeholder="www.example.com"
-              />
+              <div>
+                <label for="resource-title">Title</label>
+                <input
+                  name="title"
+                  type="text"
+                  class="form-control"
+                  id="resource-title"
+                />
+              </div>
+              <div>
+                <label for="resource-topic">Topic</label>
+                <input
+                  name="topic"
+                  type="text"
+                  class="form-control"
+                  id="resource-topic"
+                />
+              </div>
+              <div>
+                <label for="resource-type">Type</label>
+                <select class="form-control" id="resource-type" name="type">
+                  <option value="Blog">Blog</option>
+                  <option value="Video">Video</option>
+                  <option value="Documentation">Documentation</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+            </div>
+            <label for="resource-url">URL</label>
+            <input
+              name="url"
+              type="text"
+              class="form-control"
+              id="resource-url"
+              placeholder="www.example.com"
+            />
+            <label for="resource-description">Description</label>
+            <textarea
+              name="description"
+              class="form-control"
+              id="resource-description"
+              rows="2"
+            ></textarea>
+            <div class="new-resource-footer">
+              <button class="btn" type="submit">Submit</button>
             </div>
           </div>
-          <div class="new-resource-footer">
-            <button class="btn" type="submit">Submit</button>
-          </div>
         </form>
-
-        <!-- <form id="new-resource-form" action="/resources" method="POST">
-          <div>
-            <textarea
-              name="text"
-              id="resource-text"
-              placeholder="Submit a new resource"
-            ></textarea>
-          </div>
-          <div class="new-resource-footer">
-            <button class="btn" type="submit">Submit</button>
-            <output name="counter" class="counter" for="resource-text">140</output>
-          </div>
-          <div class="validation-error-msg"></div>
-        </form> -->
       </section>
-
       <section class="resource-container"></section>
-
       <a href="#" class="scroll-to-top">
         <div class="tooltiptext">Return to top of page</div>
         <span><i class="fas fa-angle-double-up"></i></span>

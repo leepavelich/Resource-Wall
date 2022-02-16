@@ -9,93 +9,100 @@ article.resource {
   width: 80%;
   margin-left: 10%;
   border-style: solid;
+
+  header {
+    display: flex;
+    align-items: baseline;
+
+    .title {
+      font-weight: 700;
+    }
+
+    .handle {
+      font-size: 1.2rem;
+      color: #babace;
+      margin-left: auto;
+    }
+
+    .delete-resource {
+      color: red;
+      margin-left: 1rem;
+    }
+
+    .delete-resource:hover {
+      color: maroon;
+      cursor: pointer;
+    }
+  }
+
+  .resource-content {
+    // border-bottom: 5px solid $body-color;
+    margin-top: 0.5em;
+    margin-bottom: 1em;
+  }
+
+  .resource-content-text {
+    word-wrap: break-word;
+    text-align: left;
+    font-size: 1.2rem;
+    margin-right: 0.5em;
+  }
+
+  .resource-url {
+    text-align: start;
+    margin-right: auto;
+    font-size: 1rem;
+  }
+
+  footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 60%;
+
+    .icons {
+      display: flex;
+      padding-right: 1em;
+      cursor: pointer;
+
+      button {
+        border: none;
+        padding-right: 1em;
+        background-color: transparent;
+        align-self: flex-end;
+      }
+
+      button.highlighted {
+        color: red;
+      }
+
+      span {
+        width: 2em;
+      }
+
+      .fa-heart:hover {
+        color: palevioletred;
+      }
+
+      .fa-comment:hover {
+        color: blue;
+      }
+
+      .fa-star {
+        display: none;
+        color: goldenrod;
+        margin-left: 0.2rem;
+      }
+    }
+
+    .days-ago {
+      margin-top: auto;
+    }
+  }
 }
 
 article.resource:hover {
   box-shadow: 5px 5px #c8c8e1;
-}
-
-article.resource header {
-  display: flex;
-  align-items: baseline;
-}
-
-article.resource header .title {
-  font-weight: 700;
-}
-
-article.resource header .handle {
-  font-size: 1.2rem;
-  color: #babace;
-  margin-left: auto;
-}
-
-article.resource header .delete-resource {
-  color: red;
-  margin-left: 1rem;
-}
-
-article.resource header .delete-resource:hover {
-  color: maroon;
-  cursor: pointer;
-}
-
-article.resource .resource-content {
-  // border-bottom: 5px solid $body-color;
-  margin-top: 0.5em;
-  margin-bottom: 1em;
-}
-
-article.resource .resource-content-text {
-  word-wrap: break-word;
-  text-align: left;
-  font-size: 1.2rem;
-  margin-right: 0.5em;
-}
-
-article.resource .resource-url {
-  text-align: start;
-  margin-right: auto;
-  font-size: 1rem;
-}
-
-article.resource footer {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  font-size: 60%;
-}
-
-// article.resource footer .days-ago {
-//   padding-left: 1em;
-// }
-
-article.resource footer .icons {
-  display: flex;
-  padding-right: 1em;
-  cursor: pointer;
-}
-
-article.resource footer .icons button {
-  border: none;
-  font-size: 16px;
-  color: #4b5499;
-}
-
-article.resource footer .icons button.highlighted {
-  color: red;
-}
-
-article.resource footer .icons span {
-  width: 2em;
-}
-
-article.resource footer .icons .fa-heart:hover {
-  color: palevioletred;
-}
-
-article.resource footer .icons .fa-comment:hover {
-  color: aquamarine;
 }
 
 .rate > div {
@@ -108,12 +115,6 @@ article.resource footer .icons .fa-comment:hover {
   text-align: center;
 }
 
-article.resource footer .icons .fa-star {
-  display: none;
-  color: goldenrod;
-  padding: 0.2rem;
-}
-
 article.resource + article.resource {
   margin-top: 1em;
 }
@@ -123,8 +124,8 @@ article.resource + article.resource {
 }
 
 .comment-container {
-  border: 2px solid black;
-  border-radius: 8px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
   background-color: white;
   padding: 0.5rem;
   margin-bottom: 0.5rem;
@@ -160,14 +161,17 @@ article.resource + article.resource {
 
   .comment-content {
     margin-top: 0.5rem;
+    display: flex;
+    justify-content: space-between;
 
     p:first-child {
       font-size: 1rem;
+      max-width: 80%;
     }
 
     p:last-child {
-      text-align: right;
       font-size: 0.8rem;
+      align-self: flex-end;
     }
   }
 }
@@ -180,6 +184,14 @@ article.resource + article.resource {
   input {
     flex-grow: 1;
     margin: 0 1rem 1rem 0;
+  }
+
+  .btn {
+    background-color: #ccc;
+  }
+
+  .btn:hover {
+    background-color: #999;
   }
 }
 
