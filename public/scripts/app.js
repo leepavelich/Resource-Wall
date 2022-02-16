@@ -20,8 +20,12 @@ $(() => {
 
 // clicking logo will re-load all resources (escape from likes/submissions)
 const reloadResources = () => {
+  $("#all-resources-btn").on("click", () => {
+    $(".resource").show();
+  });
+
   $("nav .logo").on("click", () => {
-    loadResources();
+    $(".resource").show();
   });
 };
 

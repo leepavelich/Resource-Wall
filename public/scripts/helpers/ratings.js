@@ -9,6 +9,11 @@ const loadRatings = (data) => {
 // add the rating to db and re-render stars for that particular resource
 const addRating = (id) => {
   const currentUserId = document.cookie.split("=")[1];
+  if (!currentUserId) {
+    console.log(currentUserId);
+
+    return;
+  }
 
   for (let i = 1; i <= 5; i++) {
     $(`#rate-${id} .star-${i}`).on("click", () => {
