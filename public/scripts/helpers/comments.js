@@ -26,6 +26,9 @@ const renderComments = (id) => {
       $commentsContainer.append($comment);
       addDeleteCommentListener(comment);
     });
+
+    $(`#comment-${id}`)
+      .children().html(`&nbsp; ${data.resources.length}`)
   });
 };
 
