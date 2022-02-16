@@ -17,22 +17,27 @@ article.resource:hover {
 
 article.resource header {
   display: flex;
-  justify-content: space-between;
   align-items: baseline;
 }
 
-// article.resource header .avatar {
-//   width: 30px;
-//   margin-left: auto;
-//   margin-right: 0.5em;
-// }
+article.resource header .title {
+  font-weight: 700;
+}
 
 article.resource header .handle {
-  // display: flex;
-  // justify-content: flex-end;
-  // flex-grow: 1;
-  font-size: 1rem;
+  font-size: 1.2rem;
   color: #babace;
+  margin-left: auto;
+}
+
+article.resource header .delete-resource {
+  color: red;
+  margin-left: 1rem;
+}
+
+article.resource header .delete-resource:hover {
+  color: maroon;
+  cursor: pointer;
 }
 
 article.resource .resource-content {
@@ -44,7 +49,7 @@ article.resource .resource-content {
 article.resource .resource-content-text {
   word-wrap: break-word;
   text-align: left;
-  // margin-left: 0.5em;
+  font-size: 1.2rem;
   margin-right: 0.5em;
 }
 
@@ -132,10 +137,21 @@ article.resource + article.resource {
   .user-info {
     display: flex;
     align-items: center;
-  }
 
-  .user-info p {
-    margin-left: 0.5rem;
+    p {
+      margin-left: 0.5rem;
+    }
+
+    i {
+      color: red;
+      margin-left: auto;
+      margin-right: 0.5rem;
+    }
+
+    i:hover {
+      color: maroon;
+      cursor: pointer;
+    }
   }
 
   img {

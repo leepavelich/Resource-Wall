@@ -47,7 +47,7 @@ const getUserById = (userId) => {
 const getResourceComments = (resourceId) => {
   return pool
     .query(
-      `SELECT comment, comments.created_at, username, avatar_photo_url FROM comments
+      `SELECT comments.id AS comment_id, users.id AS user_id, comment, comments.created_at, username, avatar_photo_url FROM comments
         INNER JOIN users ON comments.user_id = users.id
         WHERE resource_id = $1;
       `,
@@ -89,7 +89,23 @@ const getLikes = (resourceId) => {
   );
 };
 
-// 4.
+// 4.a
+const removeComment = (commentId) => {
+  return (
+    pool
+      .query(
+        `DELETE FROM comments
+          WHERE id = $1
+      `,
+        [commentId]
+      )
+      // returns newly created comment - this may be unnecessary
+      .then((result) => result.rows[0])
+      .catch((err) => err.message)
+  );
+};
+
+// 4.b
 const addComment = (newComment) => {
   const { user_id, resource_id, comment } = newComment;
 
@@ -127,7 +143,7 @@ const removeRating = (newRating) => {
   );
 };
 
-// 5.
+// 5.b
 const addRating = (newRating) => {
   const { user_id, resource_id, rating } = newRating;
 
@@ -190,7 +206,7 @@ const removeLike = (like) => {
 const getAllResources = () => {
   return pool
     .query(
-      `SELECT resources.id, title, description, type, topic, url, resources.created_at, username
+      `SELECT resources.id, users.id AS user_id, title, description, type, topic, url, resources.created_at, username, resources.is_deleted
         FROM resources
         INNER JOIN users ON owner_id = users.id;
       `
@@ -199,7 +215,7 @@ const getAllResources = () => {
     .catch((err) => err.message);
 };
 
-// 9.
+// 9.a
 const addResource = (newResource) => {
   const { owner_id, title, description, type, topic, url } = newResource;
 
@@ -218,11 +234,24 @@ const addResource = (newResource) => {
   );
 };
 
-// (optional for now)
-// addUser
-// updateRating
-// removeRating
-// removeComment
+// 9.b
+const removeResource = (resource) => {
+  const { id } = resource;
+
+  return (
+    pool
+      .query(
+        `UPDATE resources
+        SET is_deleted = true
+        WHERE id = $1;
+      `,
+        [id]
+      )
+      // returns newly created resource - this may be unnecessary
+      .then((result) => result.rows[0])
+      .catch((err) => err.message)
+  );
+};
 
 module.exports = {
   getAllResources,
@@ -232,9 +261,11 @@ module.exports = {
   getResourceRating,
   getLikes,
   addResource,
+  removeComment,
   addComment,
   addLike,
   removeLike,
   addRating,
   removeRating,
+  removeResource,
 };

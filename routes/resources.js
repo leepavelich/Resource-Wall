@@ -48,7 +48,20 @@ module.exports = (database) => {
       });
   });
 
-  // 4. add new comment
+  // 4.a remove comment
+  router.post("/comments/remove", (req, res) => {
+    const { comment_id } = req.body;
+
+    database
+      .removeComment(comment_id)
+      .then((resources) => res.send({ resources }))
+      .catch((e) => {
+        console.error(e);
+        res.send(e);
+      });
+  });
+
+  // 4.b add new comment
   router.post("/comments", (req, res) => {
     const newComment = req.body;
 
@@ -74,7 +87,7 @@ module.exports = (database) => {
       });
   });
 
-  // 5. add rating
+  // 5.b add rating
   router.post("/rating", (req, res) => {
     const newRating = req.body;
 
@@ -115,11 +128,6 @@ module.exports = (database) => {
 
   // 8. retrive all resources
   router.get("/", (req, res) => {
-    // const userId = req.session.userId;
-    // if (!userId) {
-    //   res.error("Not logged in");
-    //   return;
-    // } PROBABLY WILL DELETE
     database
       .getAllResources()
       .then((resources) => res.send({ resources }))
@@ -129,13 +137,26 @@ module.exports = (database) => {
       });
   });
 
-  // 9. add new resource
+  // 9.a add new resource
   router.post("/", (req, res) => {
     const newResource = req.body;
 
     database
       .addResource(newResource)
       .then(() => res.redirect("/"))
+      .catch((e) => {
+        console.error(e);
+        res.send(e);
+      });
+  });
+
+  // 9.b soft delete a resource
+  router.post("/remove", (req, res) => {
+    const resourceId = req.body;
+
+    database
+      .removeResource(resourceId)
+      .then((resources) => res.send({ resources }))
       .catch((e) => {
         console.error(e);
         res.send(e);
