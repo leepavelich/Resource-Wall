@@ -123,7 +123,7 @@ const createResourceElement = (resource) => {
       <section id="resource-${resource.id}-comments"></section>
       <form>
         <input type="text" id="${resource.id}-comment">
-        <button id="${resource.id}-comment-btn" class="btn btn-lg" type="button">Comment</button>
+        <button id="${resource.id}-comment-btn" class="btn" type="button">Comment</button>
       </form>
     </div>
     <footer>

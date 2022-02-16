@@ -185,6 +185,14 @@ article.resource + article.resource {
     flex-grow: 1;
     margin: 0 1rem 1rem 0;
   }
+
+  .btn {
+    background-color: #ccc;
+  }
+
+  .btn:hover {
+    background-color: #999;
+  }
 }
 
 .rate p {
