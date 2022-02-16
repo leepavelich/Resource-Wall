@@ -10,8 +10,6 @@ const loadRatings = (data) => {
 const addRating = (id) => {
   const currentUserId = document.cookie.split("=")[1];
   if (!currentUserId) {
-    console.log(currentUserId);
-
     return;
   }
 
@@ -22,14 +20,23 @@ const addRating = (id) => {
       $.post(`/api/resources/rating/clear`, {
         user_id: currentUserId,
         resource_id: id,
-      }).then(() => {
+      }).then((data) => {
+        // if prev rating = new rating, abort after removing rating
+        if (data.resources[0]) {
+          const prevRating = data.resources[0].rating;
+
+          if (newRating === prevRating) {
+            return renderStars(id);
+          }
+        }
+
         // insert new rating
         $.post(`/api/resources/rating`, {
           user_id: currentUserId,
           resource_id: id,
           rating: newRating,
         }).then(() => {
-          renderStars(id);
+          return renderStars(id);
         });
       });
     });
@@ -58,7 +65,6 @@ const renderStars = (id) => {
         $(`#rate-${id} .fa-solid.star-${i}`).show();
       } else {
         $(`#rate-${id} .fa-regular.star-${i}`).show();
-
         $(`#rate-${id} .fa-solid.star-${i}`).hide();
       }
     }
