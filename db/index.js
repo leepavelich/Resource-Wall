@@ -94,7 +94,7 @@ const removeComment = (commentId) => {
   return (
     pool
       .query(
-        `REMOVE FROM comments
+        `DELETE FROM comments
           WHERE id = $1
       `,
         [commentId]

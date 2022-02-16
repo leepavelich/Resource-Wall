@@ -50,10 +50,10 @@ module.exports = (database) => {
 
   // 4.a remove comment
   router.post("/comments/remove", (req, res) => {
-    const { id } = req.body;
+    const { comment_id } = req.body;
 
     database
-      .removeComment(id)
+      .removeComment(comment_id)
       .then((resources) => res.send({ resources }))
       .catch((e) => {
         console.error(e);
