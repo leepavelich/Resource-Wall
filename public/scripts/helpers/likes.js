@@ -19,7 +19,8 @@ const likesSet = (id) => {
 
 const filterLikes = () => {
   $("#likes-btn").click(() => {
-    $(".resource").show()
+    $(".resource").show();
+    $(".search-wrapper input").val("");
 
     $(".resource").each(function () {
       if (!$(this).find('[id^="like"]').hasClass("highlighted")) {

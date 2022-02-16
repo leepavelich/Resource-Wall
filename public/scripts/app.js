@@ -18,14 +18,11 @@ $(() => {
   logout(); // log user out
 });
 
-// clicking logo will re-load all resources (escape from likes/submissions)
+// clicking home tab will re-load all resources (escape from likes/submissions)
 const reloadResources = () => {
   $("#all-resources-btn").on("click", () => {
     $(".resource").show();
-  });
-
-  $("nav .logo").on("click", () => {
-    $(".resource").show();
+    $(".search-wrapper input").val("");
   });
 };
 
@@ -130,7 +127,7 @@ const createResourceElement = (resource) => {
       <div class="days-ago">Created ${timeAgo}</div>
       <div class="icons">
         <button id="like-${resource.id}"><i id="like-${resource.id}" class="fa-solid fa-heart"></i></button>
-        <button id="comment-${resource.id}"><i id="comment-${resource.id}" class="fa-regular fa-comment"></i></button>
+        <button id="comments-toggle-${resource.id}"><i id="comment-${resource.id}" class="fa-regular fa-comment"></i></button>
         <div class="rate" id="rate-${resource.id}">
           <p></p>
           <div>

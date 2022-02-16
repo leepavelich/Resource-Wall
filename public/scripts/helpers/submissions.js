@@ -7,6 +7,7 @@ const filterSubmissions = () => {
   $.get(`/api/users/${currentUserId}`).then((data) => {
     $("#submissions-btn").click(() => {
       $(".resource").show();
+      $(".search-wrapper input").val("");
 
       $(".resource").each(function () {
         if ($(this).find(".handle").text() !== `@${data.resources.username}`) {
