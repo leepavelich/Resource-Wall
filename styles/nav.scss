@@ -19,10 +19,6 @@ nav {
     border-radius: 8px;
   }
 
-  .btn:last-child {
-    margin-left: auto;
-  }
-
   .btn:hover {
     background-color: white;
     color: black;
@@ -35,6 +31,20 @@ nav {
   }
 
   .logo:hover {
+    cursor: pointer;
+  }
+
+  #nav-auth {
+    display: flex;
+    align-items: baseline;
+    margin-left: auto;
+  }
+
+  #current-user {
+    font-size: 1.2rem;
+  }
+
+  #current-user:hover {
     cursor: pointer;
   }
 

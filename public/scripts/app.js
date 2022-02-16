@@ -13,6 +13,7 @@ $(() => {
   filterLikes();
   filterSubmissions();
   scrollToTopButton(); // bottom-right scroll-to-top button
+  showCurrentUser();
   logout();
 });
 
@@ -139,6 +140,16 @@ const createResourceElement = (resource) => {
   `;
 
   return $resource;
+};
+
+const showCurrentUser = () => {
+  const currentUserId = document.cookie.split("=")[1];
+  if (currentUserId) {
+    $.get(`/api/users/${currentUserId}`).then((data) => {
+      const currentUsername = data.resources.username;
+      $("#current-user").text(`@${currentUsername}`);
+    });
+  }
 };
 
 const scrollToTopButton = () => {
