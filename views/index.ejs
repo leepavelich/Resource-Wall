@@ -85,55 +85,62 @@
       </div>
 
       <section class="new-resource">
-        <form action="/api/resources" method="POST">
-          <div class="form-group">
+        <form action="/api/resources" method="POST" class="card">
+          <div class="form-group card-body">
+            <h3>Submit a New Resource</h3>
+            <input
+              type="number"
+              id="new-resource-owner-id"
+              name="owner_id"
+              hidden
+            />
             <div>
-              <input
-                type="number"
-                id="new-resource-owner-id"
-                name="owner_id"
-                hidden
-              />
-              <label for="resource-title">Title</label>
-              <input
-                name="title"
-                type="text"
-                class="form-control"
-                id="resource-title"
-              />
-              <label for="resource-description">Description</label>
-              <textarea
-                name="description"
-                class="form-control"
-                id="resource-description"
-                rows="2"
-              ></textarea>
-              <label for="resource-type">Type</label>
-              <select class="form-control" id="resource-type" name="type">
-                <option value="Blog">Blog</option>
-                <option value="Video">Video</option>
-                <option value="Documentation">Documentation</option>
-                <option value="Other">Other</option>
-              </select>
-              <label for="resource-topic">Topic</label>
-              <input
-                name="topic"
-                type="text"
-                class="form-control"
-                id="resource-topic"
-              />
-              <label for="resource-url">URL</label>
-              <input
-                name="url"
-                type="text"
-                class="form-control"
-                id="resource-url"
-                placeholder="www.example.com"
-              />
+              <div>
+                <label for="resource-title">Title</label>
+                <input
+                  name="title"
+                  type="text"
+                  class="form-control"
+                  id="resource-title"
+                />
+              </div>
+              <div>
+                <label for="resource-topic">Topic</label>
+                <input
+                  name="topic"
+                  type="text"
+                  class="form-control"
+                  id="resource-topic"
+                />
+              </div>
+              <div>
+                <label for="resource-type">Type</label>
+                <select class="form-control" id="resource-type" name="type">
+                  <option value="Blog">Blog</option>
+                  <option value="Video">Video</option>
+                  <option value="Documentation">Documentation</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
             </div>
-          </div>
-          <div class="new-resource-footer">
-            <button class="btn" type="submit">Submit</button>
+            <label for="resource-url">URL</label>
+            <input
+              name="url"
+              type="text"
+              class="form-control"
+              id="resource-url"
+              placeholder="www.example.com"
+            />
+            <label for="resource-description">Description</label>
+            <textarea
+              name="description"
+              class="form-control"
+              id="resource-description"
+              rows="2"
+            ></textarea>
+            <div class="new-resource-footer">
+              <button class="btn" type="submit">Submit</button>
+            </div>
           </div>
         </form>
 
