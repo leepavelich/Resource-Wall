@@ -99,7 +99,7 @@ const createResourceElement = (resource) => {
   const timeAgo = timeago.format(resource.created_at);
   const currentUserId = document.cookie.split("=")[1];
 
-  const MAX_DESCRIPTION_LENGTH = 400;
+  const MAX_DESCRIPTION_LENGTH = 200;
   if (resource.description.length > MAX_DESCRIPTION_LENGTH) {
     resource.description = resource.description.substring(0,MAX_DESCRIPTION_LENGTH) + '...';
   }
@@ -117,7 +117,7 @@ const createResourceElement = (resource) => {
       ${deleteBtn}
     </header>
     <div class="resource-content">
-      <div class="card" style="width:100%">
+      <div class="card" style="width:70%; margin-left:15%">
         <img card-img-top src="${resource.image_url}">
         <div class="card-body">
           <div id="resource-desc" class="mt-2">${resource.description}</div>
