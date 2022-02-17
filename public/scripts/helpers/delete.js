@@ -7,6 +7,8 @@ const addDeleteListener = (resource) => {
       const { id } = resource;
       $.post("/api/resources/remove", { id }).then(() => {
         $(this).closest("article").hide();
+        $(this).closest("article").addClass("deleted");
+        filterSubmissions();
       });
     }
   });

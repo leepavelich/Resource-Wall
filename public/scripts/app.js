@@ -21,7 +21,7 @@ $(() => {
 // clicking home tab will re-load all resources (escape from likes/submissions)
 const reloadResources = () => {
   $("#all-resources-btn").on("click", () => {
-    $(".resource").show();
+    loadResources();
     $(".search-wrapper input").val("");
   });
 };
