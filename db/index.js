@@ -207,7 +207,7 @@ const removeLike = (like) => {
 const getAllResources = () => {
   return pool
     .query(
-      `SELECT resources.id, users.id AS user_id, title, description, type, topic, url, resources.created_at, username, resources.is_deleted
+      `SELECT resources.id, users.id AS user_id, title, description, type, topic, url, image_url, resources.created_at, username, resources.is_deleted
         FROM resources
         INNER JOIN users ON owner_id = users.id;
       `
@@ -218,16 +218,16 @@ const getAllResources = () => {
 
 // 9.a
 const addResource = (newResource) => {
-  const { owner_id, title, description, type, topic, url } = newResource;
+  const { owner_id, title, description, type, topic, url, image_url } = newResource;
 
   return (
     pool
       .query(
-        `INSERT INTO resources (owner_id, title, description, type, topic, url)
-        VALUES ($1, $2, $3, $4, $5, $6)
+        `INSERT INTO resources (owner_id, title, description, type, topic, url, image_url)
+        VALUES ($1, $2, $3, $4, $5, $6, $7)
         RETURNING *;
       `,
-        [owner_id, title, description, type, topic, url]
+        [owner_id, title, description, type, topic, url, image_url]
       )
       // returns newly created resource - this may be unnecessary
       .then((result) => result.rows[0])
