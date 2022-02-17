@@ -5,17 +5,6 @@ const dbParams = require("../lib/db.js");
 const pool = new Pool(dbParams);
 // db.connect();
 
-// /**
-//  * Get a single user from the database given their email.
-//  * @param {String} email The email of the user.
-//  * @return {Promise<{}>} A promise to the user.
-//  */
-// const getUserWithEmail = (email) => {
-//   return pool
-//     .query("SELECT * FROM users WHERE email = $1;", [email])
-//     .then((result) => result.rows[0])
-//     .catch((err) => err.message);
-// };
 /** USERS ROUTES **/
 const getLikedByUser = (userId) => {
   return pool
@@ -47,9 +36,10 @@ const getUserById = (userId) => {
 const getResourceComments = (resourceId) => {
   return pool
     .query(
-      `SELECT comments.id AS comment_id, users.id AS user_id, comment, comments.created_at, username, avatar_photo_url FROM comments
+      `SELECT comments.id AS comment_id, users.id AS user_id, comment, created_at, username, avatar_photo_url FROM comments
         INNER JOIN users ON comments.user_id = users.id
-        WHERE resource_id = $1;
+        WHERE resource_id = $1
+        ORDER BY created_at DESC;
       `,
       [resourceId]
     )
@@ -218,7 +208,8 @@ const getAllResources = () => {
 
 // 9.a
 const addResource = (newResource) => {
-  const { owner_id, title, description, type, topic, url, image_url } = newResource;
+  const { owner_id, title, description, type, topic, url, image_url } =
+    newResource;
 
   return (
     pool

@@ -1,15 +1,17 @@
 INSERT INTO comments (user_id, resource_id, comment)
-VALUES (
+VALUES (1, 4, 'Great choice, Spiderman!'),
+  (
     1,
     2,
-    'This is a nice ring. It looks like one I have.'
+    'This looks like the API used to design this Resource Wall site itself!'
   ),
   (
     2,
-    1,
-    'That looks cozy. Much nicer than where I live.'
+    5,
+    'This resource has been super helpful! Thanks for sharing.'
   ),
-  (1, 4, 'Meh'),
-  (3, 1, 'Looking good, Frodo!'),
-  (4, 6, 'Nice! These are some good quotes.'),
-  (3, 6, 'Thanks, Legolas!');
+  (
+    3,
+    5,
+    'I cannot understand anything on here.'
+  );

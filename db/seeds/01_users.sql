@@ -1,26 +1,14 @@
 -- Users table seeds here (Example)
-INSERT INTO users (username, email, password, avatar_photo_url)
+INSERT INTO users (username, avatar_photo_url)
 VALUES (
-    'frodobaggins',
-    'frodo@lotr.com',
-    'password',
-    'https://avatars.dicebear.com/api/bottts/frodo.svg'
+    'batman',
+    'https://cdn4.iconfinder.com/data/icons/avatars-xmas-giveaway/128/batman_hero_avatar_comics-512.png'
   ),
   (
-    'gollum',
-    'gollum@lotr.com',
-    'password',
-    'https://avatars.dicebear.com/api/bottts/gollum.svg'
+    'spiderman',
+    'https://cdn0.iconfinder.com/data/icons/famous-character-vol-1-colored/48/JD-16-512.png'
   ),
   (
-    'galdalfthegrey',
-    'galdalf@lotr.com',
-    'password',
-    'https://avatars.dicebear.com/api/bottts/galdalf.svg'
-  ),
-  (
-    'legolas',
-    'legolas@lotr.com',
-    'password',
-    'https://avatars.dicebear.com/api/bottts/legolas.svg'
+    'captainamerica',
+    'https://cdn0.iconfinder.com/data/icons/famous-character-vol-1-colored/48/JD-09-512.png'
   );

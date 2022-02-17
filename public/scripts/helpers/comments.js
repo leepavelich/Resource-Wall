@@ -24,7 +24,7 @@ const renderComments = (id) => {
 
     data.resources.forEach((comment) => {
       const $comment = createCommentElement(comment);
-      $commentsContainer.append($comment);
+      $commentsContainer.prepend($comment);
       addDeleteCommentListener(comment);
     });
 
@@ -41,6 +41,8 @@ const createCommentElement = (data) => {
     comment_id,
     user_id,
   } = data;
+
+  console.log(comment);
 
   const currentUserId = document.cookie.split("=")[1];
   let deleteBtn = "";
