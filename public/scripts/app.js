@@ -79,7 +79,21 @@ const prepareSubmit = () => {
 
   $("#new-resource-owner-id").val(currentUserId);
   $(".new-resource-footer button").on("click", (e) => {
-    loadResources();
+    e.preventDefault();
+    const $id = $("#new-resource-owner-id").val();
+    const $topic = $("#resource-topic").val();
+    const $type = $("#resource-type").find(":selected").text();
+    const $url = $("#resource-url").val();
+    console.log($id, $topic, $type, $url);
+
+    $.post("/api/resources", {
+      owner_id: $id,
+      topic: $topic,
+      type: $type,
+      url: $url,
+    }).then(() => {
+      loadResources();
+    });
   });
 };
 
