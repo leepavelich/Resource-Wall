@@ -124,6 +124,8 @@ const createResourceElement = (resource) => {
           <!-- <div id="resource-url" class="mt-2 is-size-7">${resource.url}</div> -->
           <a href="${resource.url}" class="stretched-link"></a>
         </div>
+        <div>${resource.type}</div>
+        <div>${resource.topic}</div>
       </div>
     </div>
     <div class="comments-section">
