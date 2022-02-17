@@ -101,7 +101,8 @@ const createResourceElement = (resource) => {
 
   const MAX_DESCRIPTION_LENGTH = 200;
   if (resource.description.length > MAX_DESCRIPTION_LENGTH) {
-    resource.description = resource.description.substring(0,MAX_DESCRIPTION_LENGTH) + '...';
+    resource.description =
+      resource.description.substring(0, MAX_DESCRIPTION_LENGTH) + "...";
   }
 
   let deleteBtn = "";
@@ -117,6 +118,10 @@ const createResourceElement = (resource) => {
       ${deleteBtn}
     </header>
     <div class="resource-content">
+      <div class="resource-tags">
+      <div class="resource-topic">Topic: <b>${resource.topic}</b></div>
+        <div class="resource-type">Type: <b>${resource.type}</b></div>
+      </div>
       <div class="card" style="width:70%; margin-left:15%">
         <img card-img-top src="${resource.image_url}">
         <div class="card-body">
@@ -124,8 +129,7 @@ const createResourceElement = (resource) => {
           <!-- <div id="resource-url" class="mt-2 is-size-7">${resource.url}</div> -->
           <a href="${resource.url}" class="stretched-link"></a>
         </div>
-        <div>${resource.type}</div>
-        <div>${resource.topic}</div>
+
       </div>
     </div>
     <div class="comments-section">
