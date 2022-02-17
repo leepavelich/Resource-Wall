@@ -133,12 +133,13 @@ const removeRating = (newRating) => {
       .query(
         `
         DELETE FROM ratings
-          WHERE user_id = $1 AND resource_id = $2;
+          WHERE user_id = $1 AND resource_id = $2
+          RETURNING *;
       `,
         [user_id, resource_id]
       )
       // returns new rating - this may be unnecessary
-      .then((result) => result.rows[0])
+      .then((result) => result.rows)
       .catch((err) => err.message)
   );
 };

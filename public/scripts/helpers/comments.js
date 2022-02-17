@@ -1,16 +1,17 @@
 const loadComments = (data) => {
   const { resources } = data;
 
-  resources.forEach((item) => {
-    addDisplayToggle(item.id);
-    addComment(item.id);
-    renderComments(item.id);
+  resources.forEach((resource) => {
+    const { id } = resource;
+    addDisplayToggle(id);
+    onSubmitNewComment(id);
+    renderComments(id);
   });
 };
 
 // toggle comments visibility
 const addDisplayToggle = (id) => {
-  $(`#comment-${id}`).on("click", () => {
+  $(`#comments-toggle-${id}`).on("click", () => {
     $(`#resource-${id}-comments`).parent().toggle();
   });
 };
@@ -27,7 +28,7 @@ const renderComments = (id) => {
       addDeleteCommentListener(comment);
     });
 
-    $(`#comment-${id}`).children().html(`&nbsp; ${data.resources.length}`);
+    $(`#comment-btn-${id}`).children().html(`&nbsp; ${data.resources.length}`);
   });
 };
 
@@ -57,20 +58,22 @@ const createCommentElement = (data) => {
       </div>
       <div class="comment-content">
         <p>${comment}</p>
-        <p>${timeago.format(created_at)}</p>
+        <p>Posted ${timeago.format(created_at)}</p>
       </div>
     </div>
   `;
   return $comment;
 };
 
-const addComment = (id) => {
+const onSubmitNewComment = (id) => {
+  const currentUserId = document.cookie.split("=")[1];
+
   $(`#${id}-comment-btn`).on("click", () => {
-    const currentUserId = document.cookie.split("=")[1];
     const $comment = $(`#${id}-comment`).val();
     if (!$comment) {
       return;
     }
+
     $.post("/api/resources/comments", {
       user_id: currentUserId,
       resource_id: id,

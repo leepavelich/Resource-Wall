@@ -6,10 +6,14 @@ const filterSubmissions = () => {
 
   $.get(`/api/users/${currentUserId}`).then((data) => {
     $("#submissions-btn").click(() => {
+      $(".search-wrapper input").val("");
       $(".resource").show();
 
       $(".resource").each(function () {
-        if ($(this).find(".handle").text() !== `@${data.resources.username}`) {
+        if (
+          $(this).find(".handle").text() !== `@${data.resources.username}` ||
+          $(this).hasClass("deleted")
+        ) {
           $(this).hide();
         }
       });
