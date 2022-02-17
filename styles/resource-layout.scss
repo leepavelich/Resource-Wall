@@ -16,6 +16,20 @@ article.resource {
 
     .title {
       font-weight: 700;
+
+      .input-group-text {
+        height: 100%;
+        background-color: lightgreen;
+      }
+
+      .input-group-text:hover {
+        background-color: rgb(56, 241, 56);
+        cursor: pointer;
+      }
+    }
+
+    .edit-new-title {
+      display: none;
     }
 
     .handle {
@@ -31,6 +45,16 @@ article.resource {
 
     .delete-resource:hover {
       color: maroon;
+      cursor: pointer;
+    }
+
+    .edit-resource {
+      color: blue;
+      margin-left: 1rem;
+    }
+
+    .edit-resource:hover {
+      color: navy;
       cursor: pointer;
     }
   }

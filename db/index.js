@@ -216,18 +216,18 @@ const getAllResources = () => {
     .catch((err) => err.message);
 };
 
-// 9.a
-const addResource = (newResource) => {
-  const { owner_id, title, description, type, topic, url, image_url } = newResource;
+// 9.c
+const updateResource = (resource) => {
+  const { id, title } = resource;
 
   return (
     pool
       .query(
-        `INSERT INTO resources (owner_id, title, description, type, topic, url, image_url)
-        VALUES ($1, $2, $3, $4, $5, $6, $7)
-        RETURNING *;
+        `UPDATE resources
+        SET title = $2
+        WHERE id = $1;
       `,
-        [owner_id, title, description, type, topic, url, image_url]
+        [id, title]
       )
       // returns newly created resource - this may be unnecessary
       .then((result) => result.rows[0])
@@ -254,6 +254,26 @@ const removeResource = (resource) => {
   );
 };
 
+// 9.c
+const addResource = (newResource) => {
+  const { owner_id, title, description, type, topic, url, image_url } =
+    newResource;
+
+  return (
+    pool
+      .query(
+        `INSERT INTO resources (owner_id, title, description, type, topic, url, image_url)
+        VALUES ($1, $2, $3, $4, $5, $6, $7)
+        RETURNING *;
+      `,
+        [owner_id, title, description, type, topic, url, image_url]
+      )
+      // returns newly created resource - this may be unnecessary
+      .then((result) => result.rows[0])
+      .catch((err) => err.message)
+  );
+};
+
 module.exports = {
   getAllResources,
   getLikedByUser,
@@ -261,12 +281,13 @@ module.exports = {
   getResourceComments,
   getResourceRating,
   getLikes,
-  addResource,
   removeComment,
   addComment,
   addLike,
   removeLike,
   addRating,
   removeRating,
+  updateResource,
   removeResource,
+  addResource,
 };

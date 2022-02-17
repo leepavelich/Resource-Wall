@@ -7,7 +7,7 @@
 
 const express = require("express");
 const router = express.Router();
-const fetch = require('node-fetch');
+const fetch = require("node-fetch");
 
 module.exports = (database) => {
   // 1. get all comments of a resource
@@ -138,38 +138,17 @@ module.exports = (database) => {
       });
   });
 
-  // 9.a add new resource
-  router.post("/", (req, res) => {
-    const newResource = req.body;
-    const data = {key: process.env.API_KEY, q: req.body.url}
+  // 9.a update title of a resource
+  router.post("/update", (req, res) => {
+    const updatedResource = req.body;
 
-    fetch('https://api.linkpreview.net', {
-      method: 'POST',
-      mode: 'cors',
-      body: JSON.stringify(data),
-    }).then(res => {
-      if (res.status != 200) {
-        console.log(res.status)
-        throw new Error('something went wrong');
-      }
-      return res.json()
-    }).then(response => {
-      newResource.image_url = response.image;
-      newResource.title = response.title;
-      newResource.description = response.description;
-
-      console.log(newResource);
-
-      database
-      .addResource(newResource)
-      .then(() => res.redirect("/"))
+    database
+      .updateResource(updatedResource)
+      .then((resources) => res.send({ resources }))
       .catch((e) => {
         console.error(e);
         res.send(e);
       });
-    }).catch(error => {
-      console.log(error)
-    })
   });
 
   // 9.b soft delete a resource
@@ -182,6 +161,43 @@ module.exports = (database) => {
       .catch((e) => {
         console.error(e);
         res.send(e);
+      });
+  });
+
+  // 9.c add new resource
+  router.post("/", (req, res) => {
+    const newResource = req.body;
+    const data = { key: process.env.API_KEY, q: req.body.url };
+
+    fetch("https://api.linkpreview.net", {
+      method: "POST",
+      mode: "cors",
+      body: JSON.stringify(data),
+    })
+      .then((res) => {
+        if (res.status != 200) {
+          console.log(res.status);
+          throw new Error("something went wrong");
+        }
+        return res.json();
+      })
+      .then((response) => {
+        newResource.image_url = response.image;
+        newResource.title = response.title;
+        newResource.description = response.description;
+
+        console.log(newResource);
+
+        database
+          .addResource(newResource)
+          .then(() => res.redirect("/"))
+          .catch((e) => {
+            console.error(e);
+            res.send(e);
+          });
+      })
+      .catch((error) => {
+        console.log(error);
       });
   });
 
