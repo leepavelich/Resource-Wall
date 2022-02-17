@@ -70,28 +70,36 @@ const renderResources = (resourcesObj) => {
 };
 
 const prepareSubmit = () => {
-  const currentUserId = document.cookie.split("=")[1];
-  if (currentUserId) {
-    $("#auth-btn").html("Logout");
-  } else {
-    $(".show-if-auth").hide();
-  }
+  // hide error message on input
+  $("#resource-topic").on("input", () => {
+    $(".alert-danger").slideUp();
+  });
 
-  $("#new-resource-owner-id").val(currentUserId);
+  $("#resource-url").on("input", () => {
+    $(".alert-danger").slideUp();
+  });
+
+  // set owner_id field to current user's id
+  const currentUserId = Number(document.cookie.split("=")[1]);
+
   $(".new-resource-footer button").on("click", (e) => {
     e.preventDefault();
-    const $id = $("#new-resource-owner-id").val();
     const $topic = $("#resource-topic").val();
     const $type = $("#resource-type").find(":selected").text();
     const $url = $("#resource-url").val();
-    console.log($id, $topic, $type, $url);
+    if (!$topic || !$type || !$url) {
+      return $(".alert-danger").slideDown();
+    }
 
     $.post("/api/resources", {
-      owner_id: $id,
+      owner_id: currentUserId,
       topic: $topic,
       type: $type,
       url: $url,
     }).then(() => {
+      $("#resource-topic").val("");
+      $("#resource-url").val("");
+      $(".new-resource").slideUp();
       loadResources();
     });
   });
@@ -139,8 +147,7 @@ const createResourceElement = (resource) => {
       <div class="card" style="width:70%; margin-left:15%">
         <img card-img-top src="${resource.image_url}">
         <div class="card-body">
-          <div id="resource-desc" class="mt-2">${resource.description}</div>
-          <!-- <div id="resource-url" class="mt-2 is-size-7">${resource.url}</div> -->
+          <div class="resource-desc" class="mt-2">${resource.description}</div>
           <a href="${resource.url}" class="stretched-link"></a>
         </div>
 
@@ -184,11 +191,15 @@ const createResourceElement = (resource) => {
 
 const showCurrentUser = () => {
   const currentUserId = document.cookie.split("=")[1];
+
   if (currentUserId) {
+    $("#auth-btn").html("Logout");
     $.get(`/api/users/${currentUserId}`).then((data) => {
       const currentUsername = data.resources.username;
       $("#current-user").text(`@${currentUsername}`);
     });
+  } else {
+    $(".show-if-auth").hide();
   }
 };
 
