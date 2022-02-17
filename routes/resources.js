@@ -141,7 +141,7 @@ module.exports = (database) => {
   // 9.a add new resource
   router.post("/", (req, res) => {
     const newResource = req.body;
-    const data = {key: process.env.API_KEY, q: req.body.url}
+    const data = {key: process.env.API_KEY, q: newResource.url}
 
     fetch('https://api.linkpreview.net', {
       method: 'POST',
