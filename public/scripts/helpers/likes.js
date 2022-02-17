@@ -33,7 +33,7 @@ const filterLikes = () => {
 const toggleLikes = () => {
   const currentUserId = Number(document.cookie.split("=")[1]);
 
-  $.get("/api/resources", renderResources).then((data) => {
+  $.get("/api/resources").then((data) => {
     for (let i = 1; i <= data.resources.length; i++) {
       $(`#like-${i}`).on("click", function () {
         if ($(this).hasClass("highlighted")) {

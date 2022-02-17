@@ -126,7 +126,7 @@ module.exports = (database) => {
       });
   });
 
-  // 8. retrive all resources
+  // 8. retrieve all resources
   router.get("/", (req, res) => {
     database
       .getAllResources()
@@ -140,6 +140,7 @@ module.exports = (database) => {
   // 9.a add new resource
   router.post("/", (req, res) => {
     const newResource = req.body;
+    console.log(process.env.API_KEY);
 
     database
       .addResource(newResource)

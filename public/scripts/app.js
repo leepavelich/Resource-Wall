@@ -99,6 +99,11 @@ const createResourceElement = (resource) => {
   const timeAgo = timeago.format(resource.created_at);
   const currentUserId = document.cookie.split("=")[1];
 
+  const MAX_DESCRIPTION_LENGTH = 400;
+  if (resource.description.length > MAX_DESCRIPTION_LENGTH) {
+    resource.description = resource.description.substring(0,MAX_DESCRIPTION_LENGTH) + '...';
+  }
+
   let deleteBtn = "";
   if (resource.user_id == currentUserId) {
     deleteBtn = `
@@ -112,8 +117,14 @@ const createResourceElement = (resource) => {
       ${deleteBtn}
     </header>
     <div class="resource-content">
-      <p class="resource-content-text">${resource.description}</p>
-      <p class="resource-url"><a href="${resource.url}" target="_blank">${resource.url}</a></p>
+      <div class="card" style="width:100%">
+        <img card-img-top src="${resource.image_url}">
+        <div class="card-body">
+          <div id="resource-desc" class="mt-2">${resource.description}</div>
+          <!-- <div id="resource-url" class="mt-2 is-size-7">${resource.url}</div> -->
+          <a href="${resource.url}" class="stretched-link"></a>
+        </div>
+      </div>
     </div>
     <div class="comments-section">
       <p>Comments</p>
