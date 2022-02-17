@@ -63,6 +63,32 @@ article.resource {
     // border-bottom: 5px solid $body-color;
     margin-top: 0.5em;
     margin-bottom: 1em;
+
+    .resource-tags {
+      display: flex;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      color: black;
+
+      .resource-topic {
+        border: 2px solid green;
+        border-radius: 999px;
+        background-color: palegreen;
+        padding: 4px 12px;
+        margin-right: 0.5rem;
+      }
+
+      .resource-type {
+        border: 2px solid blue;
+        border-radius: 999px;
+        background-color: paleturquoise;
+        padding: 4px 12px;
+      }
+    }
+
+    .resource-desc {
+      font-size: 1.2rem;
+    }
   }
 
   .resource-content-text {

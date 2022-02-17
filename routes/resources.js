@@ -138,7 +138,7 @@ module.exports = (database) => {
       });
   });
 
-  // 9.a update title of a resource
+ // 9.a update title of a resource
   router.post("/update", (req, res) => {
     const updatedResource = req.body;
 
