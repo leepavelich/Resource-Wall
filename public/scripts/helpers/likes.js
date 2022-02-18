@@ -32,6 +32,9 @@ const filterLikes = () => {
 
 const toggleLikes = () => {
   const currentUserId = Number(document.cookie.split("=")[1]);
+  if (!currentUserId) {
+    return;
+  }
 
   $.get("/api/resources").then((data) => {
     for (let i = 1; i <= data.resources.length; i++) {
