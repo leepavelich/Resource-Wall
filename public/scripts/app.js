@@ -9,9 +9,7 @@ $(() => {
   loadResources(); // initial page load
   reloadResources(); // reload home page on logo click
   prepareSubmit(); // prepare submit new form feature
-  prepareEditTitle(); // prepare titles to be edited
   toggleNew(); // toggle form for submitting new resource
-  toggleLikes(); // toggle liking/unliking a resource
   filterLikes(); // filter displayed resources via likes
   filterSubmissions(); // filter displayed resources via submitted
   scrollToTopButton(); // bottom-right scroll-to-top button
