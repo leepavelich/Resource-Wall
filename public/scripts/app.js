@@ -45,9 +45,11 @@ const loadResources = () => {
         rsc.title.toLowerCase().includes(value) ||
         rsc.description.toLowerCase().includes(value) ||
         rsc.topic.toLowerCase().includes(value) ||
+        rsc.type.toLowerCase().includes(value) ||
         rsc.title.includes(value) ||
         rsc.description.includes(value) ||
-        rsc.topic.includes(value);
+        rsc.topic.includes(value) ||
+        rsc.type.includes(value);
       if (isVisible) {
         $(`#${rsc.id}`).show();
       } else {
