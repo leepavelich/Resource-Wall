@@ -34,6 +34,7 @@ const loadResources = () => {
     loadComments(data);
     loadRatings(data);
     renderLikes(data);
+    toggleLikes();
     prepareEditTitle(data);
 
     resources = data.resources;
