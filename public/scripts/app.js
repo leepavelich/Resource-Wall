@@ -9,6 +9,7 @@ $(() => {
   loadResources(); // initial page load
   reloadResources(); // reload home page on logo click
   prepareSubmit(); // prepare submit new form feature
+  prepareEditTitle(); // prepare titles to be edited
   toggleNew(); // toggle form for submitting new resource
   toggleLikes(); // toggle liking/unliking a resource
   filterLikes(); // filter displayed resources via likes
@@ -33,6 +34,7 @@ const loadResources = () => {
     loadComments(data);
     loadRatings(data);
     renderLikes(data);
+    prepareEditTitle(data);
 
     resources = data.resources;
   });
@@ -52,6 +54,31 @@ const loadResources = () => {
       } else {
         $(`#${rsc.id}`).hide();
       }
+    });
+  });
+};
+
+const prepareEditTitle = (data) => {
+  if (!data) {
+    return;
+  }
+  data.resources.forEach((resource) => {
+    const $input = $(`#new-title-${resource.id}`);
+    const $editSection = $input.closest(".edit-new-title");
+
+    $(`#edit-resource-${resource.id}`).on("click", () => {
+      $editSection.css("display", "flex");
+      $(`#new-title-${resource.id} + div > span`).on("click", function () {
+        $(this).html("Updated!");
+        const $newTitle = $input.val();
+        const $id = resource.id;
+        $.post("/api/resources/update", { title: $newTitle, id: $id });
+
+        setTimeout(() => {
+          $editSection.hide();
+          $input.closest(".title").text($input.val());
+        }, 1000);
+      });
     });
   });
 };
@@ -128,16 +155,28 @@ const createResourceElement = (resource) => {
   }
 
   let deleteBtn = "";
+  let editBtn = "";
   if (resource.user_id == currentUserId) {
     deleteBtn = `
-    <i class="fa-regular fa-trash-can delete-resource" id="delete-resource-${resource.id}" ></i>`;
+    <i class="fa-regular fa-trash-can delete-resource" id="delete-resource-${resource.id}"></i>`;
+    editBtn = `
+    <i class="fas fa-edit edit-resource" id="edit-resource-${resource.id}"></i>
+    `;
   }
   const $resource = `
   <article class="resource card" id="${resource.id}">
     <header>
-      <div class="title">${resource.title}</div>
+      <div class="title">${resource.title}
+      <div class="edit-new-title input-group">
+        <input type="text" class="form-control" placeholder="New title" id="new-title-${resource.id}">
+        <div class="input-group-append">
+          <span class="input-group-text"><i class="fa-solid fa-check"></i></span>
+        </div>
+      </div>
+      </div>
       <div class="handle">@${resource.username}</div>
       ${deleteBtn}
+      ${editBtn}
     </header>
     <div class="resource-content">
       <div class="resource-tags">
