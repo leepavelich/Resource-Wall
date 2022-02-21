@@ -6,6 +6,8 @@ This is a project to practice our full-stack  web development abilities, using P
 
 Resource Wall is a web app that allows users to submit resources (URLs) that will then have a preview shown including a title, thumbnail, and description. Users can like, comment, and rate resources.
 
+## Screenshot
+!["Screenshot of the main app"](https://github.com/leepavelich/Resource-Wall/blob/master/docs/app-main.png?raw=true)
 
 ## Getting Started
 
